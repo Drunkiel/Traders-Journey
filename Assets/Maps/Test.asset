@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f66d0e6444e04b46a5f4cd098d957c1, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  groundTiles:
+  - {fileID: 11400000, guid: a6989673533d07545b01e8f37b7b2a23, type: 2}
+  - {fileID: 11400000, guid: ca6934410f8cd234f84a4b11eff957e1, type: 2}
+  - {fileID: 11400000, guid: 9663c59e48c25bc4cbd75f8f5a2ce1f9, type: 2}
+  waterTiles:
+  - {fileID: 11400000, guid: b2d56318c278633488b59f31d3fd56a5, type: 2}
+  - {fileID: 11400000, guid: 8a36f84101672e24baef4d12b4899bd4, type: 2}
+  - {fileID: 11400000, guid: 4f3c6500ab1f8ff42bb320d2b35a6cab, type: 2}
+  treePrefabs:
+  - {fileID: 7735493239429040175, guid: b9aa3751319546048af5cb104db71f78, type: 3}
+  - {fileID: 8125432098295348487, guid: 14da27bbe5b355146bd0b62efc1fe408, type: 3}
+  - {fileID: 232179838065078804, guid: a043fba1099a3d6499a832b1ce54dcd0, type: 3}
+  - {fileID: 8013468406840090845, guid: 331f874f08b3a38449a4ff2882d43ccc, type: 3}
+  rockPrefabs: []
