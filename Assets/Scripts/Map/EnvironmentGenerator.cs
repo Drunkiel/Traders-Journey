@@ -22,16 +22,20 @@ public class EnvironmentGenerator : MonoBehaviour
 
     private IEnumerator GenerateEnvironment(float interval)
     {
-        while (LakeGenerator.isLakeGenerated && treesGenerated <= maxTrees)
-        {
-            Vector3 randomPosition = GetPosition();
-            if (randomPosition != Vector3.zero)
-            {
-                Instantiate(MapGenerator.instance._mapData.treePrefabs[Random.Range(0, 4)], randomPosition, Quaternion.identity, parent);
-                treesGenerated++;
-            }
-            else maxTrees--;
+        GameObject[] prefabs = MapGenerator.instance._mapData.treePrefabs;
 
+        while (treesGenerated <= maxTrees)
+        {
+            if (LakeGenerator.isLakeGenerated)
+            {
+                Vector3 randomPosition = GetPosition();
+                if (randomPosition != Vector3.zero)
+                {
+                    Instantiate(prefabs[MapGenerator.instance.GetRandomTile(prefabs.Length)], randomPosition, Quaternion.identity, parent);
+                    treesGenerated++;
+                }
+                else maxTrees--;
+            }
             yield return new WaitForSeconds(interval);
         }
     }

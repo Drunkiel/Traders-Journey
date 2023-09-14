@@ -26,4 +26,11 @@ public class MapGenerator : MonoBehaviour
         _lakeGenerator.GenerateLake();
         _environmentGenerator.GenerateEnvironment();
     }
+
+    public int GetRandomTile(int numberOfTiles)
+    {
+        if (Random.Range(0, 4) == 0) return Random.Range(1, numberOfTiles);
+
+        return 0;
+    }
 }

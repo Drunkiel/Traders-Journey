@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class WalkerController : MonoBehaviour
 {
-    public Tile tile;
     public Tilemap tilemap;
 
     private Vector3Int firstTargetPosition;
@@ -24,13 +23,8 @@ public class WalkerController : MonoBehaviour
         while (!reachedEnd)
         {
             MoveWalker();
+            LakeGenerator.isLakeGenerated = reachedEnd;
             yield return new WaitForSeconds(interval);
-        }
-
-        if (reachedEnd)
-        {
-            LakeGenerator.isLakeGenerated = true;
-            Destroy(gameObject);
         }
     }
 
@@ -41,7 +35,7 @@ public class WalkerController : MonoBehaviour
         transform.position += new Vector3(bestMove.x, bestMove.y);
 
         PlaceAdditionalTiles(transform.position, moveDirection, 1f);
-        tilemap.SetTile(tilemap.WorldToCell(transform.position), tile);
+        tilemap.SetTile(tilemap.WorldToCell(transform.position), MapGenerator.instance._mapData.waterTiles[MapGenerator.instance.GetRandomTile(MapGenerator.instance._mapData.waterTiles.Length)]);
     }
 
     public void SetPosition()
@@ -50,12 +44,15 @@ public class WalkerController : MonoBehaviour
         if (Random.Range(0, 2) == 0) isLeft = true;
 
         Vector3Int startPosition = new Vector3Int(
-            isLeft ? Random.Range(MapGenerator.mapSize.x / 2, MapGenerator.mapSize.x) : Random.Range(-MapGenerator.mapSize.x, -MapGenerator.mapSize.x / 2),
-            isTop ? Random.Range(MapGenerator.mapSize.y / 2, MapGenerator.mapSize.y) : Random.Range(-MapGenerator.mapSize.y, -MapGenerator.mapSize.y / 2),
-            0);
+                isLeft ? Random.Range(-MapGenerator.mapSize.x, -MapGenerator.mapSize.x / 2) : Random.Range(MapGenerator.mapSize.x / 2, MapGenerator.mapSize.x),
+                isTop ? Random.Range(MapGenerator.mapSize.y / 2, MapGenerator.mapSize.y) : Random.Range(-MapGenerator.mapSize.y, -MapGenerator.mapSize.y / 2)
+            );
 
-        firstTargetPosition = new Vector3Int(-startPosition.x + Random.Range(-5, 5), -startPosition.y + Random.Range(-5, 5), 0);
-        secondTargetPosition = new Vector3Int((startPosition.x + firstTargetPosition.x) / 2 + Random.Range(-5, 5), (startPosition.y + firstTargetPosition.y) / 2 + Random.Range(-5, 5), 0);
+        secondTargetPosition = new Vector3Int(-startPosition.x + Random.Range(-5, 5), -startPosition.y + Random.Range(-5, 5));
+        firstTargetPosition = new Vector3Int(
+                (startPosition.x + secondTargetPosition.x) / 2 + Random.Range(-10, 10),
+                (startPosition.y + secondTargetPosition.y) / 2 + Random.Range(-10, 10)
+            );
 
         transform.position = tilemap.GetCellCenterWorld(startPosition);
     }
@@ -113,7 +110,7 @@ public class WalkerController : MonoBehaviour
         for (int i = -Mathf.RoundToInt(randomWidth / 2); i <= Mathf.RoundToInt(randomWidth / 2); i++)
         {
             Vector3Int adjacentCell = cellPosition + new Vector3Int(i, direction.y, 0);
-            tilemap.SetTile(tilemap.WorldToCell(tilemap.GetCellCenterWorld(adjacentCell)), tile);
+            tilemap.SetTile(tilemap.WorldToCell(tilemap.GetCellCenterWorld(adjacentCell)), MapGenerator.instance._mapData.waterTiles[MapGenerator.instance.GetRandomTile(MapGenerator.instance._mapData.waterTiles.Length)]);
         }
     }
 }
