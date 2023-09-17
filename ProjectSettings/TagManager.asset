@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Environment
   - Water
+  - Building
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,7 @@ TagManager:
     locked: 0
   - name: Building
     uniqueID: 670722673
+    locked: 0
+  - name: UI
+    uniqueID: 210251903
     locked: 0

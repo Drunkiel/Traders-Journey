@@ -27,17 +27,17 @@ public class BuildingSystem : MonoBehaviour
 
         ChangeMaterial(CanBePlaced());
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlaceButton();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape)) Destroy(_objectToPlace.gameObject);
+        /*        if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    PlaceButton();
+                }
+                else if (Input.GetKeyDown(KeyCode.Escape)) Destroy(_objectToPlace.gameObject);*/
     }
 
     public static Vector3 GetMouseWorldPosition()
     {
         Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = -Camera.main.transform.position.z; 
+        mousePosition.z = -Camera.main.transform.position.z;
 
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
@@ -48,8 +48,13 @@ public class BuildingSystem : MonoBehaviour
     {
         Vector3Int cellPosition = gridLayout.WorldToCell(position);
 
-        if (position.x > MapGenerator.mapSize.x || position.x < -MapGenerator.mapSize.x + 1|| position.y > MapGenerator.mapSize.y|| position.y < -MapGenerator.mapSize.y + 1)
+        if (position.x > MapGenerator.mapSize.x || position.x < -MapGenerator.mapSize.x || position.y > MapGenerator.mapSize.y || position.y < -MapGenerator.mapSize.y)
             return SnapCoordinateToGrid(Vector3.zero);
+
+        if (_objectToPlace != null)
+        {
+            if (_objectToPlace.size.x == 1 && _objectToPlace.size.y == 1) return new Vector2(cellPosition.x + 0.5f, cellPosition.y + 0.5f);
+        }
 
         return cellPosition;
     }
@@ -71,6 +76,11 @@ public class BuildingSystem : MonoBehaviour
 
     public void OpenUI(bool destroy)
     {
+        //Set object variables
+        FollowObject _followObject = UI.GetComponent<FollowObject>();
+        _followObject.objectToFollow = _objectToPlace.transform;
+
+
         //UI
         UI.SetActive(true);
 

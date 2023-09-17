@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7566170253934847245}
   m_Layer: 0
   m_Name: Castle
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,7 +193,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.9, y: 1.9}
   m_EdgeRadius: 0
 --- !u!114 &8958513513161938062
 MonoBehaviour:
@@ -228,6 +228,7 @@ MonoBehaviour:
   objectsTag:
   - Environment
   - Water
+  - Building
 --- !u!1 &2055295774618742507
 GameObject:
   m_ObjectHideFlags: 0

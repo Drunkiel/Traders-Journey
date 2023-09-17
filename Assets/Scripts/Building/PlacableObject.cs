@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlacableObject : MonoBehaviour
 {
     public bool isPlaced;
-    public Vector3Int size;
-    public Vector3[] vertices;
+    public Vector2Int size;
+    public Vector2[] vertices;
     public GameObject border;
 
     public string[] objectsTag;
@@ -40,7 +40,7 @@ public class PlacableObject : MonoBehaviour
     private void GetColliderVertexPositionLocal()
     {
         BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D>();
-        vertices = new Vector3[4];
+        vertices = new Vector2[4];
         vertices[0] = collider.offset + new Vector2(-collider.size.x, -collider.size.y) * 0.5f;
         vertices[1] = collider.offset + new Vector2(collider.size.x, -collider.size.y) * 0.5f;
         vertices[2] = collider.offset + new Vector2(collider.size.x, -collider.size.y) * 0.5f;
@@ -50,7 +50,7 @@ public class PlacableObject : MonoBehaviour
     private void CalculateSizeInCells()
     {
         BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D>();
-        size = new Vector3Int(Mathf.CeilToInt(collider.size.x), Mathf.CeilToInt(collider.size.y));
+        size = new Vector2Int(Mathf.CeilToInt(collider.size.x), Mathf.CeilToInt(collider.size.y));
     }
 
     public Vector3 GetStartPosition()
