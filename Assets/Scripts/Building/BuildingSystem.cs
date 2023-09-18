@@ -64,10 +64,12 @@ public class BuildingSystem : MonoBehaviour
         if (inBuildingMode) return;
 
         inBuildingMode = true;
-        Vector3 position = SnapCoordinateToGrid(Vector3.zero);
-
-        GameObject newObject = Instantiate(prefab, position, Quaternion.identity);
+        GameObject newObject = Instantiate(prefab);
         _objectToPlace = newObject.GetComponent<PlacableObject>();
+
+        Vector3 position = SnapCoordinateToGrid(Vector3.zero);
+        newObject.transform.position = position;
+
         Instantiate(buildingState, newObject.transform);
         newObject.AddComponent<ObjectDrag>();
 

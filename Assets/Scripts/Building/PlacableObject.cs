@@ -9,7 +9,7 @@ public class PlacableObject : MonoBehaviour
 
     public string[] objectsTag;
 
-    private void Start()
+    private void Awake()
     {
         GetColliderVertexPositionLocal();
         CalculateSizeInCells();
