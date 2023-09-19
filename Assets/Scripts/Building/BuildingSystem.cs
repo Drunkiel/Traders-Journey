@@ -53,7 +53,13 @@ public class BuildingSystem : MonoBehaviour
 
         if (_objectToPlace != null)
         {
-            if (_objectToPlace.size.x == 1 && _objectToPlace.size.y == 1) return new Vector2(cellPosition.x + 0.5f, cellPosition.y + 0.5f);
+            bool additionalX = false;
+            bool additionalY = false;
+
+            if (_objectToPlace.size.x == 1) additionalX = true;
+            if (_objectToPlace.size.y == 1) additionalY = true;
+                
+            return new Vector2(cellPosition.x + (additionalX ? 0.5f : 0f), cellPosition.y + (additionalY ? 0.5f : 0f));
         }
 
         return cellPosition;

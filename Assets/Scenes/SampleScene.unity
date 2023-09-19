@@ -736,7 +736,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 145344416}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1947814919}
+        m_TargetAssemblyTypeName: BuildingSystem, Assembly-CSharp
+        m_MethodName: InitializeWithObject
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7508319214651218707, guid: a6c372139e688eb4ab7a04973ccf3fe8, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &145344416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6601,6 +6613,8 @@ MonoBehaviour:
   gridLayout: {fileID: 1090216696}
   buildingsPrefabs:
   - {fileID: 1887772150512011310, guid: 476afe974fa5a5b47ae39b95a2e6fa74, type: 3}
+  - {fileID: 392665097090275270, guid: caec2d65f2dda024f8cd564e9858e9dc, type: 3}
+  - {fileID: 7508319214651218707, guid: a6c372139e688eb4ab7a04973ccf3fe8, type: 3}
   buildingState: {fileID: 2954530093267141738, guid: 0de9a3e7cea38014e8c69dfe5f473c06, type: 3}
   colors:
   - serializedVersion: 2
@@ -7202,7 +7216,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 809664239}
-  - {fileID: 619394802}
   - {fileID: 898317023}
+  - {fileID: 619394802}
   - {fileID: 1215687902}
   - {fileID: 1947814915}
