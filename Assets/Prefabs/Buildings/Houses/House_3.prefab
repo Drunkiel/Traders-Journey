@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 1330680193818362935}
   - component: {fileID: 1246153662182061122}
   - component: {fileID: 8035699229783107748}
+  - component: {fileID: -9000763867998852177}
   - component: {fileID: 2974817366318057005}
   - component: {fileID: 7821830484952081247}
   m_Layer: 0
@@ -192,6 +193,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
+--- !u!114 &-9000763867998852177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050419443036438242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98577726796734343ad4dfef2135e7e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingName: House
+  buildingSprite: {fileID: 129212201, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
+  buildingLevel: 1
 --- !u!114 &2974817366318057005
 MonoBehaviour:
   m_ObjectHideFlags: 0

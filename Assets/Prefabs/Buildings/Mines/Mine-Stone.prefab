@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8493029043498801451}
   - component: {fileID: 5129065608642576590}
   - component: {fileID: 2302999821557493750}
+  - component: {fileID: -3910488055847745336}
   - component: {fileID: 9110490535939411948}
   - component: {fileID: 5534416789112857487}
   m_Layer: 0
@@ -108,6 +109,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
+--- !u!114 &-3910488055847745336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2307091408163964988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98577726796734343ad4dfef2135e7e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingName: Mine
+  buildingSprite: {fileID: -1462382195, guid: 334788d06a1daa84c9f8d9102f3c5bca, type: 3}
+  buildingLevel: 1
 --- !u!114 &9110490535939411948
 MonoBehaviour:
   m_ObjectHideFlags: 0

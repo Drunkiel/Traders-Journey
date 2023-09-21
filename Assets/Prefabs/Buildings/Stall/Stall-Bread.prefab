@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 1192595283404490511}
   - component: {fileID: 6070004029155644194}
   - component: {fileID: 6944637066319864930}
+  - component: {fileID: 5188723654185145494}
   - component: {fileID: 3128465824830916443}
   - component: {fileID: 5082798046920456163}
   m_Layer: 0
@@ -192,6 +193,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
+--- !u!114 &5188723654185145494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557056626337083837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98577726796734343ad4dfef2135e7e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingName: Stall
+  buildingSprite: {fileID: -1600050353, guid: f56124c2841151d47a034147f4d166a0, type: 3}
+  buildingLevel: 1
 --- !u!114 &3128465824830916443
 MonoBehaviour:
   m_ObjectHideFlags: 0

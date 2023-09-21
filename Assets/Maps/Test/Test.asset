@@ -26,3 +26,4 @@ MonoBehaviour:
   - {fileID: 232179838065078804, guid: a043fba1099a3d6499a832b1ce54dcd0, type: 3}
   - {fileID: 8013468406840090845, guid: 331f874f08b3a38449a4ff2882d43ccc, type: 3}
   rockPrefabs: []
+  _buildingData: {fileID: 11400000, guid: 304d7c584ae08e746947000ef4ee9345, type: 2}

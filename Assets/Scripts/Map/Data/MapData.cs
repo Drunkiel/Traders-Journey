@@ -8,4 +8,6 @@ public class MapData : ScriptableObject
     public Tile[] waterTiles;
     public GameObject[] treePrefabs;
     public GameObject[] rockPrefabs;
+
+    public BuildingData _buildingData;
 }

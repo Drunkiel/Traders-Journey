@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 4103771324195124663}
   - component: {fileID: -8297961712506271475}
   - component: {fileID: -2099909089366672511}
+  - component: {fileID: 6629305962851374976}
   - component: {fileID: -159518503269044540}
   - component: {fileID: -6253720794463130994}
   m_Layer: 0
@@ -277,6 +278,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9, y: 0.9}
   m_EdgeRadius: 0
+--- !u!114 &6629305962851374976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7508319214651218707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98577726796734343ad4dfef2135e7e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingName: Breeder
+  buildingSprite: {fileID: 1716272480, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
+  buildingLevel: 0
 --- !u!114 &-159518503269044540
 MonoBehaviour:
   m_ObjectHideFlags: 0

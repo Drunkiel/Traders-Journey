@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1358858644777584948}
   - component: {fileID: 5628563125150223505}
   - component: {fileID: 680193769111115474}
+  - component: {fileID: 8741255953657653883}
   - component: {fileID: 4114107361193601262}
   - component: {fileID: 8861680228728578428}
   m_Layer: 0
@@ -109,6 +110,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9, y: 0.9}
   m_EdgeRadius: 0
+--- !u!114 &8741255953657653883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3536268537436279897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98577726796734343ad4dfef2135e7e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingName: Fishing Cotage
+  buildingSprite: {fileID: 1716272480, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
+  buildingLevel: 0
 --- !u!114 &4114107361193601262
 MonoBehaviour:
   m_ObjectHideFlags: 0

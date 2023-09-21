@@ -8,7 +8,6 @@ public class BuildingSystem : MonoBehaviour
 
     [SerializeField] private GridLayout gridLayout;
 
-    [SerializeField] private GameObject[] buildingsPrefabs;
     public GameObject buildingState;
     [SerializeField] private Color32[] colors;
 

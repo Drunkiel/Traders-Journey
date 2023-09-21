@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e057527c0d4ff439a7aee25b993109, type: 3}
+  m_Name: Building Test
+  m_EditorClassIdentifier: 
+  castleBuildings:
+  - {fileID: 1887772150512011310, guid: 476afe974fa5a5b47ae39b95a2e6fa74, type: 3}
+  houseBuildings:
+  - {fileID: 7629149291417797206, guid: 6d6f342c8640d14488899c5534928ace, type: 3}
+  - {fileID: 6406139448012037021, guid: 3663412b2cf937e4fa1af3436e577776, type: 3}
+  - {fileID: 4050419443036438242, guid: a1cd9f4895931b345ad40860dc314e06, type: 3}
+  - {fileID: 3791964373788508677, guid: c6be6a9f796fe7b4484a24c949400a12, type: 3}
+  traderBuildings:
+  - {fileID: 4016444095386215741, guid: 76728dac218323749a7468bc651d86e0, type: 3}
+  - {fileID: 7207388243750267346, guid: 4b5d630ba1713f74786998ed727f1f08, type: 3}
+  - {fileID: 4042483629281905364, guid: d6a4a6537103c8d458569bcff5ca033b, type: 3}
+  - {fileID: 3589233306940382329, guid: c23b10e260ae78b468cc07b41086d1ba, type: 3}
+  - {fileID: 6583761600143829083, guid: 33140d5dff9f2304a8950c1e8ecce27b, type: 3}
+  - {fileID: 2999252212579865752, guid: ba141cf329e706543909608a4a405c0e, type: 3}
+  - {fileID: 3090695291992229071, guid: 8c29cb6146bb9ac49843b7cc8b7e37c0, type: 3}
+  - {fileID: 1758103922624281443, guid: ff37e25dcd325334cbddafa268c7cf5f, type: 3}
+  - {fileID: 8172241914630428633, guid: f9cd552ed38944145a3de8344ae2ef66, type: 3}
+  - {fileID: 6557056626337083837, guid: 00a846cedc73c704aa2bfb61ff5de6c8, type: 3}
+  - {fileID: 2379612838729174804, guid: 4c1fe4626803bc44280bbc26171208ca, type: 3}
+  - {fileID: 4719957365875888543, guid: 3aa1b1c26397520469f16a7fca6d19f5, type: 3}
+  productionBuildings:
+  - {fileID: 3536268537436279897, guid: 15edc9402454b034290786d7ef45c664, type: 3}
+  - {fileID: 7508319214651218707, guid: a6c372139e688eb4ab7a04973ccf3fe8, type: 3}
+  - {fileID: 8413441068182811606, guid: f7a4f074e54fdc0438327114e1cf850a, type: 3}
+  - {fileID: 5569214276694863108, guid: 87cd8a3458f0c984dae755d82fbc79c6, type: 3}
+  - {fileID: 4256742266436915969, guid: 883c45c8819dc014384a6c07951668d8, type: 3}
+  - {fileID: 2307091408163964988, guid: fe8ddc9a01568a847bd068b10b09af30, type: 3}
+  armyBuildings:
+  - {fileID: 1887772150512011310, guid: 476afe974fa5a5b47ae39b95a2e6fa74, type: 3}
+  - {fileID: 3536268537436279897, guid: 15edc9402454b034290786d7ef45c664, type: 3}
+  - {fileID: 7508319214651218707, guid: a6c372139e688eb4ab7a04973ccf3fe8, type: 3}
