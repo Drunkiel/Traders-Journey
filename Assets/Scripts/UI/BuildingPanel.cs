@@ -8,6 +8,10 @@ public class BuildingPanel : MonoBehaviour
     public Transform parent;
     public GameObject prefab;
     private BuildingData _buildingData;
+    [SerializeField] private int currentPage = 1;
+    [SerializeField] private int allPages = 1;
+    private int currentContent;
+    private int maxCardsToPage = 8;
 
     private void Start()
     {
@@ -19,6 +23,8 @@ public class BuildingPanel : MonoBehaviour
     {
         GameObject[] buildings()
         {
+            currentContent = i;
+
             switch (i)
             {
                 case 0:
@@ -35,7 +41,7 @@ public class BuildingPanel : MonoBehaviour
                     return _buildingData.castleBuildings;
             }
 
-            return null;    
+            return null;
         }
 
         DestroyOldCards();
@@ -44,7 +50,23 @@ public class BuildingPanel : MonoBehaviour
 
     private void SpawnNewCards(GameObject[] buildings)
     {
-        for (int i = 0; i < buildings.Length; i++)
+        allPages = Mathf.CeilToInt(buildings.Length / maxCardsToPage) + 1; //Idk why but this would not round the number to top so I need add 1 to work good :0
+
+        int getLength()
+        {
+            if (buildings.Length <= maxCardsToPage) return buildings.Length;
+            if (buildings.Length > maxCardsToPage)
+            {
+                int number = maxCardsToPage * currentPage - buildings.Length;
+                return maxCardsToPage * currentPage - (currentPage == allPages ? number : 0);
+            }
+
+            return 0;
+        }
+
+        int length = getLength();
+
+        for (int i = maxCardsToPage * currentPage - maxCardsToPage; i < length; i++)
         {
             BuildingID _buildingID = buildings[i].GetComponent<BuildingID>();
 
@@ -70,5 +92,15 @@ public class BuildingPanel : MonoBehaviour
         {
             Destroy(oldBuildings[i]);
         }
+    }
+
+    public void PageController(int i)
+    {
+        currentPage += i;
+
+        if (currentPage > allPages) currentPage = 1;
+        if (currentPage <= 0) currentPage = allPages;
+
+        FillContent(currentContent);
     }
 }

@@ -3728,7 +3728,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1418887848}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1510423693}
+        m_TargetAssemblyTypeName: BuildingPanel, Assembly-CSharp
+        m_MethodName: PageController
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1418887848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4127,6 +4139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 1834031381}
   prefab: {fileID: 9039577630174394040, guid: c5dec0ec40d7f844794cfebf1c92090a, type: 3}
+  currentPage: 1
+  allPages: 1
 --- !u!1 &1633917680
 GameObject:
   m_ObjectHideFlags: 0
@@ -6052,7 +6066,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2050365999}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1510423693}
+        m_TargetAssemblyTypeName: BuildingPanel, Assembly-CSharp
+        m_MethodName: PageController
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2050365999
 MonoBehaviour:
   m_ObjectHideFlags: 0
