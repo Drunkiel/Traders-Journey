@@ -13,6 +13,8 @@ public class BuildingPanel : MonoBehaviour
     private int currentContent;
     private int maxCardsToPage = 8;
 
+    public GameObject[] pageButtons;
+
     private void Start()
     {
         _buildingData = MapGenerator.instance._mapData._buildingData;
@@ -50,7 +52,18 @@ public class BuildingPanel : MonoBehaviour
 
     private void SpawnNewCards(GameObject[] buildings)
     {
-        allPages = Mathf.CeilToInt(buildings.Length / maxCardsToPage) + 1; //Idk why but this would not round the number to top so I need add 1 to work good :0
+        allPages = Mathf.CeilToInt(buildings.Length / maxCardsToPage) + 1; //Idk why but this would not round the number to top so I need add 1 to make it work good :0
+        if (currentPage > allPages) currentPage = 1;
+        if (allPages <= 1)
+        {
+            for (int i = 0; i < pageButtons.Length; i++)
+                pageButtons[i].GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            for (int i = 0; i < pageButtons.Length; i++)
+                pageButtons[i].GetComponent<Button>().interactable = true;
+        }
 
         int getLength()
         {
@@ -74,6 +87,7 @@ public class BuildingPanel : MonoBehaviour
             GameObject newPrefab = Instantiate(prefab, parent);
             newPrefab.transform.GetChild(0).GetComponent<Image>().sprite = _buildingID.buildingSprite;
             newPrefab.transform.GetChild(1).GetComponent<TMP_Text>().text = _buildingID.buildingName;
+            newPrefab.GetComponent<Button>().onClick.AddListener(() => BuildingSystem.instance.InitializeWithObject(_buildingID.gameObject));
         }
     }
 
@@ -84,14 +98,10 @@ public class BuildingPanel : MonoBehaviour
         List<GameObject> oldBuildings = new List<GameObject>();
 
         for (int i = 0; i < parent.childCount; i++)
-        {
             oldBuildings.Add(parent.GetChild(i).gameObject);
-        }
 
         for (int i = 0; i < parent.childCount; i++)
-        {
             Destroy(oldBuildings[i]);
-        }
     }
 
     public void PageController(int i)
