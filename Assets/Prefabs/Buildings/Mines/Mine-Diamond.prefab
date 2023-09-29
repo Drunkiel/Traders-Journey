@@ -206,7 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: Diamond Mine
-  buildingSprite: {fileID: -769217244, guid: f56124c2841151d47a034147f4d166a0, type: 3}
+  buildingSprites:
+  - {fileID: 850774396, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   buildingLevel: 1
 --- !u!114 &6433829294794924846
 MonoBehaviour:

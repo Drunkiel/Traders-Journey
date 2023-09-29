@@ -209,7 +209,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: Castle
-  buildingSprite: {fileID: -406953775, guid: 334788d06a1daa84c9f8d9102f3c5bca, type: 3}
+  buildingSprites:
+  - {fileID: -734962296, guid: f56124c2841151d47a034147f4d166a0, type: 3}
+  - {fileID: 639686587, guid: f56124c2841151d47a034147f4d166a0, type: 3}
+  - {fileID: 1502929719, guid: f56124c2841151d47a034147f4d166a0, type: 3}
+  - {fileID: 896679794, guid: f56124c2841151d47a034147f4d166a0, type: 3}
   buildingLevel: 1
 --- !u!114 &8958513513161938062
 MonoBehaviour:

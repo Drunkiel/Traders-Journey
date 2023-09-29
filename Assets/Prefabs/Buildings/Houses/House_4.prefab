@@ -206,7 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: House
-  buildingSprite: {fileID: 129212201, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
+  buildingSprites:
+  - {fileID: 185293259, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   buildingLevel: 1
 --- !u!114 &5513394162887606770
 MonoBehaviour:

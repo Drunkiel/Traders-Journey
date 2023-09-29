@@ -3,6 +3,7 @@ using UnityEngine;
 public class InteractionSystem : MonoBehaviour
 {
     [SerializeField] private GameObject buildingUI;
+    private BuildingUI _buildingUI;
 
     private void Update()
     {
@@ -24,7 +25,7 @@ public class InteractionSystem : MonoBehaviour
             if (hit.collider.TryGetComponent(out BuildingID _buildingID))
             {
                 buildingUI.SetActive(true);
-                
+                _buildingUI.UpdateData(_buildingID);
             }
         }
     }

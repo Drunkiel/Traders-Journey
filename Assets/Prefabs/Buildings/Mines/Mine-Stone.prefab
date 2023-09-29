@@ -122,7 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: Stone Mine
-  buildingSprite: {fileID: -1462382195, guid: 334788d06a1daa84c9f8d9102f3c5bca, type: 3}
+  buildingSprites:
+  - {fileID: -1478092458, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   buildingLevel: 1
 --- !u!114 &9110490535939411948
 MonoBehaviour:

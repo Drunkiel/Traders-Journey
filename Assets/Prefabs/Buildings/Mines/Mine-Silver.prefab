@@ -122,7 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: Silver Mine
-  buildingSprite: {fileID: -1462382195, guid: 334788d06a1daa84c9f8d9102f3c5bca, type: 3}
+  buildingSprites:
+  - {fileID: -696053721, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   buildingLevel: 1
 --- !u!114 &8913395649931724531
 MonoBehaviour:
@@ -169,7 +170,7 @@ GameObject:
   - component: {fileID: 6526129707676272733}
   - component: {fileID: 6071465341202167885}
   m_Layer: 0
-  m_Name: Blue_111
+  m_Name: Blue_93
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,7 +232,7 @@ SpriteRenderer:
   m_SortingLayerID: 670722673
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 850774396, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
+  m_Sprite: {fileID: -696053721, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

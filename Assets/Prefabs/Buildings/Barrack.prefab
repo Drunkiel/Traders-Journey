@@ -122,7 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: Barrack
-  buildingSprite: {fileID: 1408906978, guid: f56124c2841151d47a034147f4d166a0, type: 3}
+  buildingSprites:
+  - {fileID: 1096655354, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   buildingLevel: 1
 --- !u!114 &8951031901601174869
 MonoBehaviour:

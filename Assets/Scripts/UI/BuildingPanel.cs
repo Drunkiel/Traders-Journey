@@ -85,7 +85,7 @@ public class BuildingPanel : MonoBehaviour
 
             //Spawn button
             GameObject newPrefab = Instantiate(prefab, parent);
-            newPrefab.transform.GetChild(0).GetComponent<Image>().sprite = _buildingID.buildingSprite;
+            newPrefab.transform.GetChild(0).GetComponent<Image>().sprite = _buildingID.buildingSprites[0];
             newPrefab.transform.GetChild(1).GetComponent<TMP_Text>().text = _buildingID.buildingName;
             newPrefab.GetComponent<Button>().onClick.AddListener(() => BuildingSystem.instance.InitializeWithObject(_buildingID.gameObject));
         }

@@ -291,7 +291,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: Breeder
-  buildingSprite: {fileID: 1716272480, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
+  buildingSprites:
+  - {fileID: 479305397, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
+  - {fileID: 1982651778, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   buildingLevel: 0
 --- !u!114 &-159518503269044540
 MonoBehaviour:

@@ -123,7 +123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: Fishing Cotage
-  buildingSprite: {fileID: 1716272480, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
+  buildingSprites:
+  - {fileID: 246935551, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
+  - {fileID: 170547582, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   buildingLevel: 0
 --- !u!114 &4114107361193601262
 MonoBehaviour:
