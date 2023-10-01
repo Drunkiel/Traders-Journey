@@ -600,7 +600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &141061281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -634,8 +634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab3eac703e94664081da12fb963e78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingSprites: []
-  buildingName: 
   singleImage: {fileID: 2104987881}
   doubleImage:
   - {fileID: 1122394140}
@@ -3098,12 +3096,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3126,7 +3124,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 210251903
@@ -3168,7 +3166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27ee729fd9983647bb1a7720b6f5871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingUI: {fileID: 0}
+  buildingUI: {fileID: 141061280}
+  _buildingUI: {fileID: 141061282}
 --- !u!1 &1078728526
 GameObject:
   m_ObjectHideFlags: 0
@@ -6732,6 +6731,7 @@ MonoBehaviour:
     rgba: 840630527
   UI: {fileID: 1180216977}
   _objectToPlace: {fileID: 0}
+  allBuildings: []
 --- !u!1 &2050365996
 GameObject:
   m_ObjectHideFlags: 0

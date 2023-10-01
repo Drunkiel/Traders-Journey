@@ -206,7 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingName: Stall
-  buildingSprite: {fileID: -1600050353, guid: f56124c2841151d47a034147f4d166a0, type: 3}
+  buildingSprites:
+  - {fileID: 129212201, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
   buildingLevel: 1
 --- !u!114 &8420192221537921109
 MonoBehaviour:

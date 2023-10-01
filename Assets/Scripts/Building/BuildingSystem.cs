@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,8 +13,8 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] private Color32[] colors;
 
     [SerializeField] private GameObject UI;
-    /*    public BuildingUI _buildingUI;*/
     public PlacableObject _objectToPlace;
+    [SerializeField] private List<BuildingID> allBuildings = new List<BuildingID>();
 
     void Awake()
     {
@@ -30,7 +31,7 @@ public class BuildingSystem : MonoBehaviour
                 {
                     PlaceButton();
                 }
-                else if (Input.GetKeyDown(KeyCode.Escape)) Destroy(_objectToPlace.gameObject);*/
+                else if (Input.GetKeyDown(KeyCode.Escape)) DestroyButton();*/
     }
 
     public static Vector3 GetMouseWorldPosition()
@@ -98,7 +99,7 @@ public class BuildingSystem : MonoBehaviour
         //Adding new listeners
         UI.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => PlaceButton());
 
-        if (destroy) UI.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => { Destroy(_objectToPlace.gameObject); UI.SetActive(false); inBuildingMode = false; });
+        if (destroy) UI.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => DestroyButton());
         else
         {
             Vector3 oldPosition = _objectToPlace.transform.position;
@@ -108,8 +109,42 @@ public class BuildingSystem : MonoBehaviour
 
     private void PlaceButton()
     {
-        if (CanBePlaced()) _objectToPlace.Place();
+        if (CanBePlaced())
+        {
+            BuildingValidation();
+            _objectToPlace.Place();
+        }
         else Destroy(_objectToPlace.gameObject);
+        UI.SetActive(false);
+        inBuildingMode = false;
+    }
+
+    private void BuildingValidation()
+    {
+        BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
+        if (_buildingID.onlyOne)
+        {
+            if (!CheckIfExists(_buildingID.buildingName)) allBuildings.Add(_buildingID);
+            else
+            {
+                DestroyButton();
+                return;
+            }
+        }
+    }
+
+    private bool CheckIfExists(string buildingName)
+    {
+        foreach (var _buildingID in allBuildings)
+        {
+            if (_buildingID.buildingName.Equals(buildingName)) return true;
+        }
+        return false;
+    }
+
+    private void DestroyButton()
+    {
+        Destroy(_objectToPlace.gameObject);
         UI.SetActive(false);
         inBuildingMode = false;
     }

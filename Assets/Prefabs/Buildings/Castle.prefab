@@ -214,6 +214,7 @@ MonoBehaviour:
   - {fileID: 639686587, guid: f56124c2841151d47a034147f4d166a0, type: 3}
   - {fileID: 1502929719, guid: f56124c2841151d47a034147f4d166a0, type: 3}
   - {fileID: 896679794, guid: f56124c2841151d47a034147f4d166a0, type: 3}
+  onlyOne: 1
   buildingLevel: 1
 --- !u!114 &8958513513161938062
 MonoBehaviour:

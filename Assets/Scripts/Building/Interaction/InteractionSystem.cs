@@ -3,7 +3,7 @@ using UnityEngine;
 public class InteractionSystem : MonoBehaviour
 {
     [SerializeField] private GameObject buildingUI;
-    private BuildingUI _buildingUI;
+    [SerializeField] private BuildingUI _buildingUI;
 
     private void Update()
     {

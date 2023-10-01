@@ -3,9 +3,6 @@ using UnityEngine.UI;
 
 public class BuildingUI : MonoBehaviour
 {
-/*    public Sprite[] buildingSprites;
-    public string buildingName;*/
-
     [SerializeField] private Image singleImage;
     [SerializeField] private Image[] doubleImage;
     [SerializeField] private Image[] quadroImage;
@@ -18,7 +15,7 @@ public class BuildingUI : MonoBehaviour
                 Debug.LogError("Not enough sprites");
                 break;
 
-            case 0:
+            case 1:
                 SetActive(0);
                 singleImage.sprite = _buildingID.buildingSprites[0];
                 break;
@@ -31,7 +28,7 @@ public class BuildingUI : MonoBehaviour
 
             case 4:
                 SetActive(2);
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < 4; i++)
                     quadroImage[i].sprite = _buildingID.buildingSprites[i];
                 break;
         }
