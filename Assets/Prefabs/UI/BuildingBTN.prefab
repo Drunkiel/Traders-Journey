@@ -747,6 +747,9 @@ GameObject:
   - component: {fileID: 434164421098780979}
   - component: {fileID: 4822751991498620324}
   - component: {fileID: 7500498501433974453}
+  - component: {fileID: 2416299372694101627}
+  - component: {fileID: -685793592311780974}
+  - component: {fileID: 735697585079831296}
   m_Layer: 5
   m_Name: BuildingBTN
   m_TagString: Untagged
@@ -828,7 +831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -858,16 +861,59 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4822751991498620324}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BuildingSystem, Assembly-CSharp
-        m_MethodName: InitializeWithObject
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 7508319214651218707, guid: a6c372139e688eb4ab7a04973ccf3fe8, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &2416299372694101627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039577630174394040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab3eac703e94664081da12fb963e78a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingNameText: {fileID: 8402401520561980231}
+  singleImage: {fileID: 2736667898956938734}
+  doubleImage:
+  - {fileID: 7291718382668332885}
+  - {fileID: 1535838394138343536}
+  quadroImage:
+  - {fileID: 3361503963390863451}
+  - {fileID: 924890759082094729}
+  - {fileID: 3659227090921305615}
+  - {fileID: 2677183176186401220}
+--- !u!114 &-685793592311780974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039577630174394040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 450cecb8693fbe14782131520c1038f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &735697585079831296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039577630174394040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls: []

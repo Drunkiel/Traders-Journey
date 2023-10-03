@@ -8,6 +8,7 @@ public class BuildingPanel : MonoBehaviour
     public Transform parent;
     public GameObject prefab;
     private BuildingData _buildingData;
+    [SerializeField] private TMP_Text sectionNameText;
     [SerializeField] private int currentPage = 1;
     [SerializeField] private int allPages = 1;
     private int currentContent;
@@ -30,16 +31,22 @@ public class BuildingPanel : MonoBehaviour
             switch (i)
             {
                 case 0:
+                    sectionNameText.text = "Castle section";
                     return _buildingData.castleBuildings;
                 case 1:
+                    sectionNameText.text = "House section";
                     return _buildingData.houseBuildings;
                 case 2:
+                    sectionNameText.text = "Trader section";
                     return _buildingData.traderBuildings;
                 case 3:
+                    sectionNameText.text = "Production section";
                     return _buildingData.productionBuildings;
                 case 4:
+                    sectionNameText.text = "Army section";
                     return _buildingData.armyBuildings;
                 case 5:
+                    sectionNameText.text = "?";
                     return _buildingData.castleBuildings;
             }
 
@@ -85,8 +92,7 @@ public class BuildingPanel : MonoBehaviour
 
             //Spawn button
             GameObject newPrefab = Instantiate(prefab, parent);
-            newPrefab.transform.GetChild(0).GetComponent<TMP_Text>().text = _buildingID.buildingName;
-            newPrefab.transform.GetChild(1).GetComponent<Image>().sprite = _buildingID.buildingSprites[0];
+            newPrefab.GetComponent<BuildingUI>().UpdateData(_buildingID);
             newPrefab.GetComponent<Button>().onClick.AddListener(() => BuildingSystem.instance.InitializeWithObject(_buildingID.gameObject));
         }
     }

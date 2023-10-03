@@ -1,14 +1,18 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BuildingUI : MonoBehaviour
 {
+    [SerializeField] private TMP_Text buildingNameText;
     [SerializeField] private Image singleImage;
     [SerializeField] private Image[] doubleImage;
     [SerializeField] private Image[] quadroImage;
 
     public void UpdateData(BuildingID _buildingID)
     {
+        buildingNameText.text = _buildingID.buildingName;
+
         switch (_buildingID.buildingSprites.Length)
         {
             default:

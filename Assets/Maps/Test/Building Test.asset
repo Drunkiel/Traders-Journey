@@ -40,6 +40,4 @@ MonoBehaviour:
   - {fileID: 4256742266436915969, guid: 883c45c8819dc014384a6c07951668d8, type: 3}
   - {fileID: 2307091408163964988, guid: fe8ddc9a01568a847bd068b10b09af30, type: 3}
   armyBuildings:
-  - {fileID: 1887772150512011310, guid: 476afe974fa5a5b47ae39b95a2e6fa74, type: 3}
-  - {fileID: 3536268537436279897, guid: 15edc9402454b034290786d7ef45c664, type: 3}
-  - {fileID: 7508319214651218707, guid: a6c372139e688eb4ab7a04973ccf3fe8, type: 3}
+  - {fileID: 3862690468067795595, guid: 5543c5a1ece53cb40bc30b4de99e7c5b, type: 3}

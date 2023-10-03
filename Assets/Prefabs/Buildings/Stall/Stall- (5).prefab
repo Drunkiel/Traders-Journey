@@ -93,7 +93,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -124,6 +124,7 @@ MonoBehaviour:
   buildingName: Stall
   buildingSprites:
   - {fileID: 129212201, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
+  onlyOne: 0
   buildingLevel: 1
 --- !u!114 &6532643686674035541
 MonoBehaviour:
