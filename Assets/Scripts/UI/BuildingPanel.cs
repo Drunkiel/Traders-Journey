@@ -93,6 +93,7 @@ public class BuildingPanel : MonoBehaviour
             //Spawn button
             GameObject newPrefab = Instantiate(prefab, parent);
             newPrefab.GetComponent<BuildingUI>().UpdateData(_buildingID);
+            newPrefab.GetComponent<ShowBuildingData>()._buildingID = _buildingID;
             newPrefab.GetComponent<Button>().onClick.AddListener(() => BuildingSystem.instance.InitializeWithObject(_buildingID.gameObject));
         }
     }

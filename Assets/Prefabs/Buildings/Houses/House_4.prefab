@@ -210,6 +210,13 @@ MonoBehaviour:
   - {fileID: 185293259, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   onlyOne: 0
   buildingLevel: 1
+  prices:
+  - resources: 0
+    quantity: 5
+  productions:
+  - resources: 0
+    quantity: 1
+    productionTime: 1
 --- !u!114 &5513394162887606770
 MonoBehaviour:
   m_ObjectHideFlags: 0

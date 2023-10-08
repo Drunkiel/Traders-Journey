@@ -294,7 +294,12 @@ MonoBehaviour:
   buildingSprites:
   - {fileID: 479305397, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   - {fileID: 1982651778, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
+  onlyOne: 0
   buildingLevel: 0
+  prices:
+  - resources: 0
+    quantity: 5
+  productions: []
 --- !u!114 &-159518503269044540
 MonoBehaviour:
   m_ObjectHideFlags: 0

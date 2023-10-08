@@ -1,4 +1,27 @@
+using System;
 using UnityEngine;
+
+public enum Resources
+{
+    Coin,
+    Stone,
+    Wheat
+};
+
+[Serializable]
+public class Price
+{
+    public Resources resources;
+    public int quantity;
+}
+
+[Serializable]
+public class Production
+{
+    public Resources resources;
+    public int quantity;
+    public int productionTime;
+}
 
 public class BuildingID : MonoBehaviour
 {
@@ -6,4 +29,6 @@ public class BuildingID : MonoBehaviour
     public Sprite[] buildingSprites;
     public bool onlyOne;
     public int buildingLevel;
+    public Price[] prices;
+    public Production[] productions;
 }

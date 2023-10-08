@@ -16,7 +16,7 @@ public class BuildingUI : MonoBehaviour
         switch (_buildingID.buildingSprites.Length)
         {
             default:
-                Debug.LogError("Not enough sprites");
+                Debug.LogError("Not enough sprites to show: " + gameObject.name);
                 break;
 
             case 1:
