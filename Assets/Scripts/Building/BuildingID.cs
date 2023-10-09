@@ -1,13 +1,6 @@
 using System;
 using UnityEngine;
 
-public enum Resources
-{
-    Coin,
-    Stone,
-    Wheat
-};
-
 [Serializable]
 public class Price
 {

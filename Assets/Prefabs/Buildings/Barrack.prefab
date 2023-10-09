@@ -127,7 +127,7 @@ MonoBehaviour:
   onlyOne: 0
   buildingLevel: 1
   prices:
-  - resources: 0
+  - resources: 1
     quantity: 5
   productions: []
 --- !u!114 &8951031901601174869
