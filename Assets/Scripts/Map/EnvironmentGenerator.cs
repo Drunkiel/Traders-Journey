@@ -4,10 +4,11 @@ using UnityEngine.Tilemaps;
 
 public class EnvironmentGenerator : MonoBehaviour
 {
+    public static bool isEnviromentGenerated;
     private Tilemap waterTilemap;
     private int treesGenerated = 0;
     [SerializeField] private int maxTrees = 150;
-    public Transform parent;
+    [SerializeField] private Transform parent;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class EnvironmentGenerator : MonoBehaviour
             }
             yield return new WaitForSeconds(interval);
         }
+        isEnviromentGenerated = true;
     }
 
     private Vector3 GetPosition()
