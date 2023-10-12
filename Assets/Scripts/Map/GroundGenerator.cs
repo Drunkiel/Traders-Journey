@@ -8,7 +8,7 @@ public class GroundGenerator : MonoBehaviour
 
     public void GenerateGround()
     {
-        StartCoroutine(GenerateGrassTiles(0.01f));
+        StartCoroutine(GenerateGrassTiles(GameController.isDevMode ? 0 : 0.01f));
     }
 
     private IEnumerator GenerateGrassTiles(float interval)

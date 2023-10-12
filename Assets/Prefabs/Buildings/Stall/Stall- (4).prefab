@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: -4817445000599855482}
   - component: {fileID: 16039026397440793}
   - component: {fileID: 6353098332684891806}
+  - component: {fileID: 3618376888356088811}
   m_Layer: 0
   m_Name: Stall- (4)
   m_TagString: Building
@@ -253,3 +254,24 @@ MonoBehaviour:
   - Environment
   - Water
   - Building
+--- !u!95 &3618376888356088811
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6583761600143829083}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2e31820c80c8a44d83ddb152077d645, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

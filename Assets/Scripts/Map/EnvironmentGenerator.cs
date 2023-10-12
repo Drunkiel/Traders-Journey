@@ -18,7 +18,7 @@ public class EnvironmentGenerator : MonoBehaviour
     public void GenerateEnvironment()
     {
         waterTilemap = MapGenerator.instance.waterTilemap;
-        StartCoroutine(GenerateEnvironment(0.05f));
+        StartCoroutine(GenerateEnvironment(GameController.isDevMode ? 0 : 0.05f));
     }
 
     private IEnumerator GenerateEnvironment(float interval)

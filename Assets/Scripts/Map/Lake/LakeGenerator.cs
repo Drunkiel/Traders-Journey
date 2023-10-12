@@ -9,7 +9,7 @@ public class LakeGenerator : MonoBehaviour
     public void GenerateLake()
     {
         SpawnWalker();
-        StartCoroutine(_walkerController.RepeatMoveWalker(0.25f));
+        StartCoroutine(_walkerController.RepeatMoveWalker(GameController.isDevMode ? 0 : 0.25f));
     }
 
     private void SpawnWalker()

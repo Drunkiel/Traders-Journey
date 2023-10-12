@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 6629305962851374976}
   - component: {fileID: -159518503269044540}
   - component: {fileID: -6253720794463130994}
+  - component: {fileID: -1863089512545153374}
   m_Layer: 0
   m_Name: Breeder
   m_TagString: Building
@@ -299,7 +300,10 @@ MonoBehaviour:
   prices:
   - resources: 0
     quantity: 5
-  productions: []
+  productions:
+  - resources: 4
+    quantity: 0
+    productionTime: 1
 --- !u!114 &-159518503269044540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,3 +338,24 @@ MonoBehaviour:
   - Environment
   - Water
   - Building
+--- !u!95 &-1863089512545153374
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7508319214651218707}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2e31820c80c8a44d83ddb152077d645, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

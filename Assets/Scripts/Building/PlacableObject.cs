@@ -20,6 +20,7 @@ public class PlacableObject : MonoBehaviour
         Destroy(GetComponent<ObjectDrag>());
         Destroy(transform.GetChild(transform.childCount - 1).gameObject);
         BuildingSystem.instance._objectToPlace = null;
+        GetComponent<Animator>().SetTrigger("Spawn");
 
         isPlaced = true;
     }

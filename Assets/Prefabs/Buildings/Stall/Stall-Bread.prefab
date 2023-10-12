@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 5188723654185145494}
   - component: {fileID: 3128465824830916443}
   - component: {fileID: 5082798046920456163}
+  - component: {fileID: 7385072484838354153}
   m_Layer: 0
   m_Name: Stall-Bread
   m_TagString: Building
@@ -253,3 +254,24 @@ MonoBehaviour:
   - Environment
   - Water
   - Building
+--- !u!95 &7385072484838354153
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557056626337083837}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2e31820c80c8a44d83ddb152077d645, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
