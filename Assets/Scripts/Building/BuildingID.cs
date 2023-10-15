@@ -21,6 +21,7 @@ public class BuildingID : MonoBehaviour
     public string buildingName;
     public Sprite[] buildingSprites;
     public bool onlyOne;
+    public Vector2 size;
     public int buildingLevel;
     public Price[] prices;
     public Production[] productions;

@@ -126,6 +126,7 @@ MonoBehaviour:
   buildingSprites:
   - {fileID: 1327156536, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   onlyOne: 0
+  size: {x: 1, y: 1}
   buildingLevel: 1
   prices:
   - resources: 0

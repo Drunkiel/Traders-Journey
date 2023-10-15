@@ -48,7 +48,9 @@ public class WalkerController : MonoBehaviour
                 isTop ? Random.Range(MapGenerator.mapSize.y / 2, MapGenerator.mapSize.y) : Random.Range(-MapGenerator.mapSize.y, -MapGenerator.mapSize.y / 2)
             );
 
+        //Setting the end
         secondTargetPosition = new Vector3Int(-startPosition.x + Random.Range(-5, 5), -startPosition.y + Random.Range(-5, 5));
+        //Setting center
         firstTargetPosition = new Vector3Int(
                 (startPosition.x + secondTargetPosition.x) / 2 + Random.Range(-10, 10),
                 (startPosition.y + secondTargetPosition.y) / 2 + Random.Range(-10, 10)

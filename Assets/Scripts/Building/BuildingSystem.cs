@@ -48,21 +48,24 @@ public class BuildingSystem : MonoBehaviour
     {
         Vector3Int cellPosition = gridLayout.WorldToCell(position);
 
-        if (position.x > MapGenerator.mapSize.x || position.x < -MapGenerator.mapSize.x || position.y > MapGenerator.mapSize.y || position.y < -MapGenerator.mapSize.y)
-            return SnapCoordinateToGrid(Vector3.zero);
+        bool additionalX = false;
+        bool additionalY = false;
 
         if (_objectToPlace != null)
         {
-            bool additionalX = false;
-            bool additionalY = false;
-
             if (_objectToPlace.size.x == 1) additionalX = true;
             if (_objectToPlace.size.y == 1) additionalY = true;
-                
-            return new Vector2(cellPosition.x + (additionalX ? 0.5f : 0f), cellPosition.y + (additionalY ? 0.5f : 0f));
         }
 
-        return cellPosition;
+        if (position.x > MapGenerator.mapSize.x ||
+            position.x < -MapGenerator.mapSize.x + (additionalX ? 1 : 0) ||
+            position.y > MapGenerator.mapSize.y ||
+            position.y < -MapGenerator.mapSize.y + 1
+            )
+            return SnapCoordinateToGrid(Vector3.zero);
+
+
+        return new Vector2(cellPosition.x + (additionalX ? 0.5f : 0f), cellPosition.y + (additionalY ? 0.5f : 0f));
     }
 
     public void InitializeWithObject(GameObject prefab)

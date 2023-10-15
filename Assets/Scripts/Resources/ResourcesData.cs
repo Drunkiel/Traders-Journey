@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -18,11 +19,13 @@ public enum Resources
 public class SingleBox
 {
     public Resources resourcesType;
+    public Sprite sprite;
     public TMP_Text quantityText;
 }
 
 public class ResourcesData : MonoBehaviour
 {
+    public static ResourcesData instance;
     public SingleBox populationBox;
     public SingleBox coinsBox;
     public SingleBox suppliesBox;
@@ -32,6 +35,23 @@ public class ResourcesData : MonoBehaviour
     public SingleBox goldBox;
     public SingleBox silverBox;
     public SingleBox diamondBox;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
+    public Sprite GetSprite(Resources resources)
+    {
+        List<SingleBox> list = new List<SingleBox>() { populationBox, coinsBox, suppliesBox, wheatBox, meatBox, stoneBox, goldBox, silverBox, diamondBox };
+
+        for (int i = 0; i < 10; i++)
+        {
+            if (resources == list[i].resourcesType) return list[i].sprite;
+        }
+
+        return populationBox.sprite;
+    }
 
     public void UpdateResourcesPanel()
     {

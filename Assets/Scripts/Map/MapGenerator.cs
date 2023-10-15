@@ -5,7 +5,7 @@ public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator instance;
     public static bool isMapGenerated;
-    public static Vector2Int mapSize = new Vector2Int(18, 10);
+    public static Vector2Int mapSize = new Vector2Int(10, 10);
 
     public MapData _mapData;
     public Tilemap groundTilemap;

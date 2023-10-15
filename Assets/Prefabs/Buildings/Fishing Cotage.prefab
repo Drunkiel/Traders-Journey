@@ -128,6 +128,7 @@ MonoBehaviour:
   - {fileID: 246935551, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   - {fileID: 170547582, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   onlyOne: 0
+  size: {x: 2, y: 1}
   buildingLevel: 0
   prices:
   - resources: 0

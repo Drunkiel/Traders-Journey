@@ -19,7 +19,7 @@ public class BuildingDataUI : MonoBehaviour
         for (int i = 0; i < _buildingID.prices.Length; i++)
         {
             GameObject newCell = Instantiate(cellPrefab, costSectionTransform);
-            newCell.transform.GetChild(1).GetComponent<Image>();
+            newCell.transform.GetChild(1).GetComponent<Image>().sprite = ResourcesData.instance.GetSprite(_buildingID.prices[i].resources);
             newCell.transform.GetChild(2).GetComponent<TMP_Text>().text = _buildingID.prices[i].quantity.ToString();
         }
 
@@ -27,7 +27,7 @@ public class BuildingDataUI : MonoBehaviour
         for (int i = 0; i < _buildingID.productions.Length; i++)
         {
             GameObject newCell = Instantiate(cellPrefab, productionSectionTransform);
-            newCell.transform.GetChild(1).GetComponent<Image>();
+            newCell.transform.GetChild(1).GetComponent<Image>().sprite = ResourcesData.instance.GetSprite(_buildingID.productions[i].resources);
             string stringCorrection(int i)
             {
                 if (i == 1) return " day";
@@ -36,6 +36,11 @@ public class BuildingDataUI : MonoBehaviour
             int productionTime = _buildingID.productions[i].productionTime;
             newCell.transform.GetChild(2).GetComponent<TMP_Text>().text = _buildingID.productions[i].quantity + " in " + productionTime + stringCorrection(productionTime);
         }
+
+        //Spawning cell for Info section
+        GameObject cell = Instantiate(cellPrefab, infoSectionTransform);
+        cell.transform.GetChild(1).GetComponent<Image>();
+        cell.transform.GetChild(2).GetComponent<TMP_Text>().text = _buildingID.size.x + "x" + _buildingID.size.y;
     }
 
     private void ClearPreviousData()
