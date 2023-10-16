@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlacableObject : MonoBehaviour
 {
     public bool isPlaced;
-    public Vector2Int size;
     public Vector2[] vertices;
     public GameObject border;
 
@@ -12,7 +11,6 @@ public class PlacableObject : MonoBehaviour
     private void Awake()
     {
         GetColliderVertexPositionLocal();
-        CalculateSizeInCells();
     }
 
     public virtual void Place()
@@ -46,12 +44,6 @@ public class PlacableObject : MonoBehaviour
         vertices[1] = collider.offset + new Vector2(collider.size.x, -collider.size.y) * 0.5f;
         vertices[2] = collider.offset + new Vector2(collider.size.x, -collider.size.y) * 0.5f;
         vertices[3] = collider.offset + new Vector2(-collider.size.x, -collider.size.y) * 0.5f;
-    }
-
-    private void CalculateSizeInCells()
-    {
-        BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D>();
-        size = new Vector2Int(Mathf.CeilToInt(collider.size.x), Mathf.CeilToInt(collider.size.y));
     }
 
     public Vector3 GetStartPosition()

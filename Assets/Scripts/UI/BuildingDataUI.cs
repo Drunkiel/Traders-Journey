@@ -13,7 +13,7 @@ public class BuildingDataUI : MonoBehaviour
     public void UpdateData(BuildingID _buildingID)
     {
         ClearPreviousData();
-        nameText.text = _buildingID.name;
+        nameText.text = _buildingID.buildingName;
 
         //Spawning cells for Cost section
         for (int i = 0; i < _buildingID.prices.Length; i++)

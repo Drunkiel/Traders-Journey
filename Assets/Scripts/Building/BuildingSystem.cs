@@ -53,19 +53,21 @@ public class BuildingSystem : MonoBehaviour
 
         if (_objectToPlace != null)
         {
-            if (_objectToPlace.size.x == 1) additionalX = true;
-            if (_objectToPlace.size.y == 1) additionalY = true;
+            if (_objectToPlace.GetComponent<BuildingID>().size.x > 1) additionalX = true;
+            if (_objectToPlace.GetComponent<BuildingID>().size.y > 1) additionalY = true;
         }
 
+        int addX = (additionalX ? 1 : 0);
+        int addY = (additionalY ? 1 : 0);
+
         if (position.x > MapGenerator.mapSize.x ||
-            position.x < -MapGenerator.mapSize.x + (additionalX ? 1 : 0) ||
+            position.x < -MapGenerator.mapSize.x + addX ||
             position.y > MapGenerator.mapSize.y ||
-            position.y < -MapGenerator.mapSize.y + 1
+            position.y < -MapGenerator.mapSize.y + addY
             )
             return SnapCoordinateToGrid(Vector3.zero);
 
-
-        return new Vector2(cellPosition.x + (additionalX ? 0.5f : 0f), cellPosition.y + (additionalY ? 0.5f : 0f));
+        return new Vector2(cellPosition.x + (additionalX ? 0f : 0.5f), cellPosition.y + (additionalY ? 0f : 0.5f));
     }
 
     public void InitializeWithObject(GameObject prefab)

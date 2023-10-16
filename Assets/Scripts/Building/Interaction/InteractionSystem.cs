@@ -7,10 +7,10 @@ public class InteractionSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) CheckIfClickedBuilding();
+        if (Input.GetKeyDown(KeyCode.Mouse0)) CheckIfClickedSomething();
     }
 
-    public void CheckIfClickedBuilding()
+    public void CheckIfClickedSomething()
     {
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = -Camera.main.transform.position.z; 
@@ -26,6 +26,11 @@ public class InteractionSystem : MonoBehaviour
             {
                 buildingUI.SetActive(true);
                 _buildingUI.UpdateData(_buildingID);
+            }
+
+            if (hit.collider.TryGetComponent(out EnvironmentID _environmentID))
+            {
+                print("test");
             }
         }
     }
