@@ -4,13 +4,13 @@ using UnityEngine.EventSystems;
 public class ShowBuildingData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Transform buildingDataUI;
-    private BuildingDataUI dataUI;
+    private BuildingDataUI _dataUI;
     public BuildingID _buildingID;
 
     private void Start()
     {
         buildingDataUI = GameObject.Find("BuildingDataUI").transform;
-        dataUI = buildingDataUI.GetComponent<BuildingDataUI>();
+        _dataUI = buildingDataUI.GetComponent<BuildingDataUI>();
     }
 
     private void SetNewPosition()
@@ -22,7 +22,8 @@ public class ShowBuildingData : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerEnter(PointerEventData eventData)
     {
         SetNewPosition();
-        dataUI.UpdateData(_buildingID);
+        _dataUI._buildingID = _buildingID;
+        _dataUI.UpdateData();
     }
 
     public void OnPointerExit(PointerEventData eventData)

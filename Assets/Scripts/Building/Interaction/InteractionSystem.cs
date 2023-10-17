@@ -4,6 +4,7 @@ public class InteractionSystem : MonoBehaviour
 {
     [SerializeField] private GameObject buildingUI;
     [SerializeField] private BuildingUI _buildingUI;
+    [SerializeField] private EnvironmentDataUI _environmentUI;
 
     private void Update()
     {
@@ -30,7 +31,10 @@ public class InteractionSystem : MonoBehaviour
 
             if (hit.collider.TryGetComponent(out EnvironmentID _environmentID))
             {
-                print("test");
+                _environmentUI.gameObject.SetActive(true);
+                _environmentUI.transform.position = hit.collider.transform.position + new Vector3(0, 2);
+                _environmentUI._environmentID = _environmentID;
+                _environmentUI.UpdateData();
             }
         }
     }
