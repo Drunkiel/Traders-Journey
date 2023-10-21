@@ -53,6 +53,76 @@ public class ResourcesData : MonoBehaviour
         return populationBox.sprite;
     }
 
+    public void AddResources(Resources resources, int quantity)
+    {
+        switch (resources)
+        {
+            case Resources.Population:
+                PlayerResources.populationQuantity += quantity;
+                break;
+            case Resources.Coins:
+                PlayerResources.coinsQuantity += quantity;  
+                break;
+            case Resources.Supplies:
+                PlayerResources.suppliesQuantity += quantity;
+                break;
+            case Resources.Wheat:
+                PlayerResources.wheatQuantity += quantity;
+                break;
+            case Resources.Meat:
+                PlayerResources.meatQuantity += quantity;   
+                break;
+            case Resources.Stone:
+                PlayerResources.stoneQuantity += quantity;
+                break;
+            case Resources.Gold:
+                PlayerResources.goldQuantity += quantity;
+                break;
+            case Resources.Silver:
+                PlayerResources.silverQuantity += quantity;
+                break;
+            case Resources.Diamond:
+                PlayerResources.diamondQuantity += quantity;
+                break;
+        }
+        UpdateResourcesPanel();
+    }
+
+    public void RemoveResources(Resources resources, int quantity)
+    {
+        switch (resources)
+        {
+            case Resources.Population:
+                PlayerResources.populationQuantity -= quantity;
+                break;
+            case Resources.Coins:
+                PlayerResources.coinsQuantity -= quantity;
+                break;
+            case Resources.Supplies:
+                PlayerResources.suppliesQuantity -= quantity;
+                break;
+            case Resources.Wheat:
+                PlayerResources.wheatQuantity -= quantity;
+                break;
+            case Resources.Meat:
+                PlayerResources.meatQuantity -= quantity;
+                break;
+            case Resources.Stone:
+                PlayerResources.stoneQuantity -= quantity;
+                break;
+            case Resources.Gold:
+                PlayerResources.goldQuantity -= quantity;
+                break;
+            case Resources.Silver:
+                PlayerResources.silverQuantity -= quantity;
+                break;
+            case Resources.Diamond:
+                PlayerResources.diamondQuantity -= quantity;
+                break;
+        }
+        UpdateResourcesPanel();
+    }
+
     public void UpdateResourcesPanel()
     {
         populationBox.quantityText.text = PlayerResources.populationQuantity.ToString();

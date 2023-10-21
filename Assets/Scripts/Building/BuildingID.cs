@@ -8,14 +8,6 @@ public class Price
     public int quantity;
 }
 
-[Serializable]
-public class Production
-{
-    public Resources resources;
-    public int quantity;
-    public int productionTime;
-}
-
 public class BuildingID : MonoBehaviour
 {
     public string buildingName;
@@ -23,6 +15,6 @@ public class BuildingID : MonoBehaviour
     public bool onlyOne;
     public Vector2 size;
     public int buildingLevel;
-    public Price[] prices;
-    public Production[] productions;
+    public Price[] _prices;
+    public Production[] _productions;
 }

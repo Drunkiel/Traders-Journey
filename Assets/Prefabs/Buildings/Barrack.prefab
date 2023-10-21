@@ -131,7 +131,10 @@ MonoBehaviour:
   prices:
   - resources: 1
     quantity: 5
-  productions: []
+  productions:
+  - resources: 3
+    quantity: 1
+    productionTime: 2
 --- !u!114 &8951031901601174869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaced: 0
-  size: {x: 0, y: 0}
   vertices: []
   border: {fileID: 2954530093267141738, guid: 0de9a3e7cea38014e8c69dfe5f473c06, type: 3}
   objectsTag: []

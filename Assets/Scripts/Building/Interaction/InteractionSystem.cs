@@ -32,7 +32,7 @@ public class InteractionSystem : MonoBehaviour
             if (hit.collider.TryGetComponent(out EnvironmentID _environmentID))
             {
                 _environmentUI.gameObject.SetActive(true);
-                _environmentUI.transform.position = hit.collider.transform.position + new Vector3(0, 2);
+                _environmentUI.transform.position = hit.collider.transform.position;
                 _environmentUI._environmentID = _environmentID;
                 _environmentUI.UpdateData();
             }

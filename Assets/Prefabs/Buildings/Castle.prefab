@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 8958513513161938062}
   - component: {fileID: 7566170253934847245}
   - component: {fileID: 231824053571383361}
+  - component: {fileID: -1194682220584111279}
   m_Layer: 0
   m_Name: Castle
   m_TagString: Building
@@ -218,14 +219,10 @@ MonoBehaviour:
   onlyOne: 1
   size: {x: 2, y: 2}
   buildingLevel: 1
-  prices:
-  - resources: 0
-    quantity: 5
-  - resources: 1
-    quantity: 1
-  productions:
-  - resources: 0
-    quantity: 1
+  _prices: []
+  _productions:
+  - resources: 2
+    quantity: 10
     productionTime: 1
 --- !u!114 &8958513513161938062
 MonoBehaviour:
@@ -240,7 +237,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaced: 0
-  size: {x: 0, y: 0}
   vertices: []
   border: {fileID: 2954530093267141738, guid: 0de9a3e7cea38014e8c69dfe5f473c06, type: 3}
   objectsTag: []
@@ -282,6 +278,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-1194682220584111279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887772150512011310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e780ebb6f924643a4058631547024b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  producingDays: 0
 --- !u!1 &2055295774618742507
 GameObject:
   m_ObjectHideFlags: 0

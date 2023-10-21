@@ -9,7 +9,7 @@ public class BuildingDataUI : DataUI
         _data.name = _buildingID.buildingName;
         _data.sprites = _buildingID.buildingSprites;
         _data.size = _buildingID.size;
-        _data.prices = _buildingID.prices;
-        _data.productions = _buildingID.productions;
+        _data.prices = _buildingID._prices;
+        _data.productions = _buildingID._productions;
     }
 }
