@@ -17,6 +17,7 @@ public class LoadingScreen : MonoBehaviour
     {
         if (!isGameLoaded)
         {
+            GameController.isGamePaused = true;
             if (GroundGenerator.isGroundGenerated && LakeGenerator.isLakeGenerated && EnvironmentGenerator.isEnviromentGenerated)
             {
                 isGameLoaded = true;

@@ -21,6 +21,7 @@ public class CycleController : MonoBehaviour
     public void OpenSummaryUI()
     {
         summaryUI.SetActive(true);
+        GameController.isGamePaused = true;
     }
 
     public void EndDay()
@@ -33,6 +34,7 @@ public class CycleController : MonoBehaviour
         }
 
         endDayEvent.Invoke();
+        GameController.isGamePaused = false;
         UpdateTexts();
     }
 

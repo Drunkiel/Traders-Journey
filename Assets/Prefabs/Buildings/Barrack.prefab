@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8951031901601174869}
   - component: {fileID: 6362769561891151832}
   - component: {fileID: 7674753175744896001}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barrack
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -128,13 +128,13 @@ MonoBehaviour:
   onlyOne: 0
   size: {x: 1, y: 1}
   buildingLevel: 1
-  prices:
+  _prices: []
+  _productions:
   - resources: 1
-    quantity: 5
-  productions:
-  - resources: 3
-    quantity: 1
+    quantity: 10
     productionTime: 2
+  _buildingProduction:
+    _productions: []
 --- !u!114 &8951031901601174869
 MonoBehaviour:
   m_ObjectHideFlags: 0

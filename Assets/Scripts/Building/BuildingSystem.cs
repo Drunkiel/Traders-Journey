@@ -93,7 +93,6 @@ public class BuildingSystem : MonoBehaviour
         FollowObject _followObject = UI.GetComponent<FollowObject>();
         _followObject.objectToFollow = _objectToPlace.transform;
 
-
         //UI
         UI.SetActive(true);
 
@@ -147,9 +146,9 @@ public class BuildingSystem : MonoBehaviour
         return false;
     }
 
-    private void DestroyButton()
+    public void DestroyButton()
     {
-        Destroy(_objectToPlace.gameObject);
+        if (_objectToPlace != null) Destroy(_objectToPlace.gameObject);
         UI.SetActive(false);
         inBuildingMode = false;
     }

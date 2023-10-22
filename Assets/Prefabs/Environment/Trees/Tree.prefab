@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 367919552397717634}
   - component: {fileID: -779027209867680563}
   - component: {fileID: 7263323105931463375}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Tree
   size: {x: 1, y: 1}
+  prices: []
 --- !u!1 &7966194034044506299
 GameObject:
   m_ObjectHideFlags: 0

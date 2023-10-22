@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6532643686674035541}
   - component: {fileID: 1314669011620214255}
   - component: {fileID: -495660335793151756}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stall- (5)
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -128,15 +128,10 @@ MonoBehaviour:
   onlyOne: 0
   size: {x: 1, y: 1}
   buildingLevel: 1
-  prices:
-  - resources: 0
-    quantity: 5
-  - resources: 2
-    quantity: 5
-  productions:
-  - resources: 0
-    quantity: 1
-    productionTime: 2
+  _prices: []
+  _productions: []
+  _buildingProduction:
+    _productions: []
 --- !u!114 &6532643686674035541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaced: 0
-  size: {x: 0, y: 0}
   vertices: []
   border: {fileID: 2954530093267141738, guid: 0de9a3e7cea38014e8c69dfe5f473c06, type: 3}
   objectsTag: []

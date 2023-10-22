@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 [Serializable]
 public class Production
@@ -9,21 +8,11 @@ public class Production
     public int productionTime;
 }
 
-public class BuildingProduction : MonoBehaviour
+[Serializable]
+public class BuildingProduction
 {
-    public int producingDays;
-    private Production[] _productions;
-
-    private void Start()
-    {
-        SetProductions();
-        CycleController.instance.endDayEvent.AddListener(() => CheckIfProductionEnded());
-    }
-
-    private void SetProductions()
-    {
-        _productions = GetComponent<BuildingID>()._productions;
-    }
+    private int producingDays;
+    [UnityEngine.HideInInspector] public Production[] _productions;
 
     public void CheckIfProductionEnded()
     {

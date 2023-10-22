@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 6433829294794924846}
   - component: {fileID: 2166329198605159951}
   - component: {fileID: 628876765213442741}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mine-Diamond
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -212,13 +212,10 @@ MonoBehaviour:
   onlyOne: 0
   size: {x: 1, y: 1}
   buildingLevel: 1
-  prices:
-  - resources: 0
-    quantity: 5
-  productions:
-  - resources: 1
-    quantity: 1
-    productionTime: 2
+  _prices: []
+  _productions: []
+  _buildingProduction:
+    _productions: []
 --- !u!114 &6433829294794924846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +229,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaced: 0
-  size: {x: 0, y: 0}
   vertices: []
   border: {fileID: 2954530093267141738, guid: 0de9a3e7cea38014e8c69dfe5f473c06, type: 3}
   objectsTag: []

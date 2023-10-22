@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4114107361193601262}
   - component: {fileID: 8861680228728578428}
   - component: {fileID: 2983185893349104044}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fishing Cotage
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -130,10 +130,10 @@ MonoBehaviour:
   onlyOne: 0
   size: {x: 2, y: 1}
   buildingLevel: 0
-  prices:
-  - resources: 0
-    quantity: 5
-  productions: []
+  _prices: []
+  _productions: []
+  _buildingProduction:
+    _productions: []
 --- !u!114 &4114107361193601262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaced: 0
-  size: {x: 0, y: 0}
   vertices: []
   border: {fileID: 2954530093267141738, guid: 0de9a3e7cea38014e8c69dfe5f473c06, type: 3}
   objectsTag: []

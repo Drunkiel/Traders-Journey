@@ -17,4 +17,14 @@ public class BuildingID : MonoBehaviour
     public int buildingLevel;
     public Price[] _prices;
     public Production[] _productions;
+    public BuildingProduction _buildingProduction;
+
+    private void Start()
+    {
+        if (_productions.Length > 0)
+        {
+            _buildingProduction._productions = _productions;
+            CycleController.instance.endDayEvent.AddListener(() => _buildingProduction.CheckIfProductionEnded());
+        }
+    }
 }
