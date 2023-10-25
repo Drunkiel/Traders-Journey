@@ -72,7 +72,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void InitializeWithObject(GameObject prefab)
     {
-        if (inBuildingMode) return;
+        if (_objectToPlace != null) return;
 
         inBuildingMode = true;
         GameObject newObject = Instantiate(prefab);
@@ -120,7 +120,7 @@ public class BuildingSystem : MonoBehaviour
         }
         else Destroy(_objectToPlace.gameObject);
         UI.SetActive(false);
-        inBuildingMode = false;
+        BuildingManager.instance.TurnOffBuildingMode();
     }
 
     private void BuildingValidation()
@@ -150,7 +150,7 @@ public class BuildingSystem : MonoBehaviour
     {
         if (_objectToPlace != null) Destroy(_objectToPlace.gameObject);
         UI.SetActive(false);
-        inBuildingMode = false;
+        BuildingManager.instance.TurnOffBuildingMode();
     }
 
     private bool CanBePlaced()

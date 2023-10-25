@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ShowHide : MonoBehaviour
 {
-    [SerializeField] private bool isShown;
+    public bool isShown;
     [SerializeField] private Animator anim;
 
     [SerializeField] private string showAnimationName;
