@@ -218,7 +218,15 @@ MonoBehaviour:
   onlyOne: 1
   size: {x: 2, y: 2}
   buildingLevel: 1
-  _prices: []
+  _prices:
+  - resources: 1
+    quantity: 5
+  - resources: 2
+    quantity: 2
+  - resources: 5
+    quantity: 10
+  - resources: 6
+    quantity: 4
   _productions:
   - resources: 2
     quantity: 10

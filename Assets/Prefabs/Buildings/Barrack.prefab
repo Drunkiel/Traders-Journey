@@ -128,11 +128,14 @@ MonoBehaviour:
   onlyOne: 0
   size: {x: 1, y: 1}
   buildingLevel: 1
-  _prices: []
-  _productions:
-  - resources: 1
+  _prices:
+  - resources: 0
     quantity: 10
-    productionTime: 2
+  - resources: 1
+    quantity: 8
+  - resources: 7
+    quantity: 3
+  _productions: []
   _buildingProduction:
     _productions: []
 --- !u!114 &8951031901601174869

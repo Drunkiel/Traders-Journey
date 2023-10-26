@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 
@@ -88,38 +89,46 @@ public class ResourcesData : MonoBehaviour
         UpdateResourcesPanel();
     }
 
-    public void RemoveResources(Resources resources, int quantity)
+    public void RemoveResources(Price[] prices)
     {
-        switch (resources)
+        if (CheckIfAllResources(prices))
         {
-            case Resources.Population:
-                PlayerResources.populationQuantity -= quantity;
-                break;
-            case Resources.Coins:
-                PlayerResources.coinsQuantity -= quantity;
-                break;
-            case Resources.Supplies:
-                PlayerResources.suppliesQuantity -= quantity;
-                break;
-            case Resources.Wheat:
-                PlayerResources.wheatQuantity -= quantity;
-                break;
-            case Resources.Meat:
-                PlayerResources.meatQuantity -= quantity;
-                break;
-            case Resources.Stone:
-                PlayerResources.stoneQuantity -= quantity;
-                break;
-            case Resources.Gold:
-                PlayerResources.goldQuantity -= quantity;
-                break;
-            case Resources.Silver:
-                PlayerResources.silverQuantity -= quantity;
-                break;
-            case Resources.Diamond:
-                PlayerResources.diamondQuantity -= quantity;
-                break;
+            print("b");
+            for (int i = 0; i < prices.Length; i++)
+            {
+                switch (prices[i].resources)
+                {
+                    case Resources.Population:
+                        PlayerResources.populationQuantity -= prices[i].quantity;
+                        break;
+                    case Resources.Coins:
+                        PlayerResources.coinsQuantity -= prices[i].quantity;
+                        break;
+                    case Resources.Supplies:
+                        PlayerResources.suppliesQuantity -= prices[i].quantity;
+                        break;
+                    case Resources.Wheat:
+                        PlayerResources.wheatQuantity -= prices[i].quantity;
+                        break;
+                    case Resources.Meat:
+                        PlayerResources.meatQuantity -= prices[i].quantity;
+                        break;
+                    case Resources.Stone:
+                        PlayerResources.stoneQuantity -= prices[i].quantity;
+                        break;
+                    case Resources.Gold:
+                        PlayerResources.goldQuantity -= prices[i].quantity;
+                        break;
+                    case Resources.Silver:
+                        PlayerResources.silverQuantity -= prices[i].quantity;
+                        break;
+                    case Resources.Diamond:
+                        PlayerResources.diamondQuantity -= prices[i].quantity;
+                        break;
+                }
+            }
         }
+        else print("No materials");
         UpdateResourcesPanel();
     }
 
@@ -134,5 +143,43 @@ public class ResourcesData : MonoBehaviour
         goldBox.quantityText.text = PlayerResources.goldQuantity.ToString();
         silverBox.quantityText.text = PlayerResources.silverQuantity.ToString();
         diamondBox.quantityText.text = PlayerResources.diamondQuantity.ToString();
+    }
+
+    private bool CheckIfAllResources(Price[] prices)
+    {
+        for (int i = 0; i < prices.Length; i++)
+        {
+            switch (prices[i].resources)
+            {
+                case Resources.Population:
+                    if (PlayerResources.populationQuantity - prices[i].quantity < 0) { print(PlayerResources.populationQuantity - prices[i].quantity); return false; }
+                        break;
+                case Resources.Coins:
+                    if (PlayerResources.coinsQuantity - prices[i].quantity < 0) { print(PlayerResources.coinsQuantity - prices[i].quantity); return false; }
+                    break;
+                case Resources.Supplies:
+                    if (PlayerResources.suppliesQuantity - prices[i].quantity < 0) { print(PlayerResources.suppliesQuantity - prices[i].quantity); return false; }
+                    break;
+                case Resources.Wheat:
+                    if (PlayerResources.wheatQuantity - prices[i].quantity < 0) { print(PlayerResources.wheatQuantity - prices[i].quantity); return false; }
+                    break;
+                case Resources.Meat:    
+                    if (PlayerResources.meatQuantity - prices[i].quantity < 0) { print(PlayerResources.meatQuantity - prices[i].quantity); return false; }
+                    break;
+                case Resources.Stone:
+                    if (PlayerResources.stoneQuantity - prices[i].quantity < 0) { print(PlayerResources.stoneQuantity - prices[i].quantity); return false; }
+                    break;
+                case Resources.Gold:
+                    if (PlayerResources.goldQuantity - prices[i].quantity < 0) { print(PlayerResources.goldQuantity - prices[i].quantity); return false; }
+                    break;
+                case Resources.Silver:
+                    if (PlayerResources.silverQuantity - prices[i].quantity < 0) { print(PlayerResources.silverQuantity - prices[i].quantity); return false; }
+                    break;
+                case Resources.Diamond:
+                    if (PlayerResources.diamondQuantity - prices[i].quantity < 0) { print(PlayerResources.diamondQuantity - prices[i].quantity); return false; }
+                    break;
+            }
+        }
+            return true;
     }
 }

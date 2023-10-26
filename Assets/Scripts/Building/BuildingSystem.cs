@@ -116,6 +116,7 @@ public class BuildingSystem : MonoBehaviour
         if (CanBePlaced())
         {
             BuildingValidation();
+            ResourcesData.instance.RemoveResources(_objectToPlace.GetComponent<BuildingID>()._prices);
             _objectToPlace.Place();
         }
         else Destroy(_objectToPlace.gameObject);
