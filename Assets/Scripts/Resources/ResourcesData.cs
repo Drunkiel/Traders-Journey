@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 
@@ -22,6 +21,7 @@ public class SingleBox
     public Resources resourcesType;
     public Sprite sprite;
     public TMP_Text quantityText;
+    public ShowHide _showHide;
 }
 
 public class ResourcesData : MonoBehaviour
@@ -59,30 +59,48 @@ public class ResourcesData : MonoBehaviour
         switch (resources)
         {
             case Resources.Population:
+                populationBox._showHide.ShowHideAnimation();
+                populationBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
                 PlayerResources.populationQuantity += quantity;
                 break;
             case Resources.Coins:
-                PlayerResources.coinsQuantity += quantity;  
+                coinsBox._showHide.ShowHideAnimation();
+                coinsBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
+                PlayerResources.coinsQuantity += quantity;
                 break;
             case Resources.Supplies:
+                suppliesBox._showHide.ShowHideAnimation();
+                suppliesBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
                 PlayerResources.suppliesQuantity += quantity;
                 break;
             case Resources.Wheat:
+                wheatBox._showHide.ShowHideAnimation();
+                wheatBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
                 PlayerResources.wheatQuantity += quantity;
                 break;
             case Resources.Meat:
-                PlayerResources.meatQuantity += quantity;   
+                meatBox._showHide.ShowHideAnimation();
+                meatBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
+                PlayerResources.meatQuantity += quantity;
                 break;
             case Resources.Stone:
+                stoneBox._showHide.ShowHideAnimation();
+                stoneBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
                 PlayerResources.stoneQuantity += quantity;
                 break;
             case Resources.Gold:
+                goldBox._showHide.ShowHideAnimation();
+                goldBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
                 PlayerResources.goldQuantity += quantity;
                 break;
             case Resources.Silver:
+                silverBox._showHide.ShowHideAnimation();
+                silverBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
                 PlayerResources.silverQuantity += quantity;
                 break;
             case Resources.Diamond:
+                diamondBox._showHide.ShowHideAnimation();
+                diamondBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
                 PlayerResources.diamondQuantity += quantity;
                 break;
         }
@@ -93,36 +111,53 @@ public class ResourcesData : MonoBehaviour
     {
         if (CheckIfAllResources(prices))
         {
-            print("b");
             for (int i = 0; i < prices.Length; i++)
             {
                 switch (prices[i].resources)
                 {
                     case Resources.Population:
+                        populationBox._showHide.ShowHideAnimation();
+                        populationBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity; 
                         PlayerResources.populationQuantity -= prices[i].quantity;
                         break;
                     case Resources.Coins:
+                        coinsBox._showHide.ShowHideAnimation();
+                        coinsBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity;
                         PlayerResources.coinsQuantity -= prices[i].quantity;
                         break;
                     case Resources.Supplies:
+                        suppliesBox._showHide.ShowHideAnimation();
+                        suppliesBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity;
                         PlayerResources.suppliesQuantity -= prices[i].quantity;
                         break;
                     case Resources.Wheat:
+                        wheatBox._showHide.ShowHideAnimation();
+                        wheatBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity;
                         PlayerResources.wheatQuantity -= prices[i].quantity;
                         break;
                     case Resources.Meat:
+                        meatBox._showHide.ShowHideAnimation();
+                        meatBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity;
                         PlayerResources.meatQuantity -= prices[i].quantity;
                         break;
                     case Resources.Stone:
+                        stoneBox._showHide.ShowHideAnimation();
+                        stoneBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity;
                         PlayerResources.stoneQuantity -= prices[i].quantity;
                         break;
                     case Resources.Gold:
+                        goldBox._showHide.ShowHideAnimation();
+                        goldBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity;
                         PlayerResources.goldQuantity -= prices[i].quantity;
                         break;
                     case Resources.Silver:
+                        silverBox._showHide.ShowHideAnimation();
+                        silverBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity;
                         PlayerResources.silverQuantity -= prices[i].quantity;
                         break;
                     case Resources.Diamond:
+                        diamondBox._showHide.ShowHideAnimation();
+                        diamondBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity;
                         PlayerResources.diamondQuantity -= prices[i].quantity;
                         break;
                 }
@@ -153,7 +188,7 @@ public class ResourcesData : MonoBehaviour
             {
                 case Resources.Population:
                     if (PlayerResources.populationQuantity - prices[i].quantity < 0) { print(PlayerResources.populationQuantity - prices[i].quantity); return false; }
-                        break;
+                    break;
                 case Resources.Coins:
                     if (PlayerResources.coinsQuantity - prices[i].quantity < 0) { print(PlayerResources.coinsQuantity - prices[i].quantity); return false; }
                     break;
@@ -163,7 +198,7 @@ public class ResourcesData : MonoBehaviour
                 case Resources.Wheat:
                     if (PlayerResources.wheatQuantity - prices[i].quantity < 0) { print(PlayerResources.wheatQuantity - prices[i].quantity); return false; }
                     break;
-                case Resources.Meat:    
+                case Resources.Meat:
                     if (PlayerResources.meatQuantity - prices[i].quantity < 0) { print(PlayerResources.meatQuantity - prices[i].quantity); return false; }
                     break;
                 case Resources.Stone:
@@ -180,6 +215,6 @@ public class ResourcesData : MonoBehaviour
                     break;
             }
         }
-            return true;
+        return true;
     }
 }

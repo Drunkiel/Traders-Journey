@@ -35,12 +35,5 @@ public class CycleController : MonoBehaviour
 
         endDayEvent.Invoke();
         GameController.isGamePaused = false;
-        UpdateTexts();
-    }
-
-    private void UpdateTexts()
-    {
-        weekText.text = "Week " + week;
-        dayText.text = "Day " + day;
     }
 }
