@@ -6,10 +6,11 @@ public class MoveCamera : MonoBehaviour
     private Vector3 origin;
     private Vector3 difference;
     public CinemachineVirtualCamera virtualCamera;
+    public Transform objectToMove;
 
     private bool drag;
 
-    public float zoomSpeed = 3.0f;
+    public float zoomSpeed = 5.0f;
     public float minZoom = 2.0f;    
     public float maxZoom = 20.0f;   
 
@@ -26,7 +27,7 @@ public class MoveCamera : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - objectToMove.position;
             if (!drag)
             {
                 drag = true;
@@ -38,7 +39,7 @@ public class MoveCamera : MonoBehaviour
         if (drag)
         {
             Vector3 newPos = origin - difference;
-            transform.position = Vector3.Lerp(transform.position, newPos, 0.1f);
+            objectToMove.position = Vector3.Lerp(objectToMove.position, newPos, 0.1f);
         }
     }
 
