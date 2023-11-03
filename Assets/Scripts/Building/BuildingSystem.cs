@@ -14,6 +14,7 @@ public class BuildingSystem : MonoBehaviour
 
     [SerializeField] private GameObject UI;
     public PlacableObject _objectToPlace;
+    public SingleChunk actualChunk;
     [SerializeField] private List<BuildingID> allBuildings = new List<BuildingID>();
 
     void Awake()
@@ -115,27 +116,34 @@ public class BuildingSystem : MonoBehaviour
     {
         if (CanBePlaced())
         {
-            BuildingValidation();
-            ResourcesData.instance.RemoveResources(_objectToPlace.GetComponent<BuildingID>()._prices);
-            _objectToPlace.Place();
+            if (BuildingValidation())
+            {
+                ResourcesData.instance.RemoveResources(_objectToPlace.GetComponent<BuildingID>()._prices);
+                _objectToPlace.Place();
+            }
         }
         else Destroy(_objectToPlace.gameObject);
         UI.SetActive(false);
         BuildingManager.instance.TurnOffBuildingMode();
     }
 
-    private void BuildingValidation()
+    private bool BuildingValidation()
     {
         BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
         if (_buildingID.onlyOne)
         {
-            if (!CheckIfExists(_buildingID.buildingName)) allBuildings.Add(_buildingID);
+            if (!CheckIfExists(_buildingID.buildingName))
+            {
+                allBuildings.Add(_buildingID);
+                return true;
+            }
             else
             {
                 DestroyButton();
-                return;
+                return false;
             }
         }
+        return true;
     }
 
     private bool CheckIfExists(string buildingName)

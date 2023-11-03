@@ -7,6 +7,7 @@ TagManager:
   - Environment
   - Water
   - Building
+  - Chunk
   layers:
   - Default
   - TransparentFX
