@@ -15,7 +15,11 @@ public class BuildingManager : MonoBehaviour
     public void ActivateBuildingMode()
     {
         if (BuildingSystem.inBuildingMode) TurnOffBuildingMode();
-        else BuildingSystem.inBuildingMode = true;
+        else
+        {
+            BuildingSystem.inBuildingMode = true;
+            BuildingSystem.instance.buildingGrid.SetActive(true);
+        }
     }
 
     public void TurnOffBuildingMode()
@@ -26,5 +30,6 @@ public class BuildingManager : MonoBehaviour
         if (environmentUI.activeSelf) return;
 
         BuildingSystem.inBuildingMode = false;
+        BuildingSystem.instance.buildingGrid.SetActive(false);
     }
 }

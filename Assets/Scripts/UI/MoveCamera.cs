@@ -7,6 +7,7 @@ public class MoveCamera : MonoBehaviour
     private Vector3 difference;
     public CinemachineVirtualCamera virtualCamera;
     public Transform objectToMove;
+    public Transform grid;
 
     private bool drag;
 
@@ -40,6 +41,7 @@ public class MoveCamera : MonoBehaviour
         {
             Vector3 newPos = origin - difference;
             objectToMove.position = Vector3.Lerp(objectToMove.position, newPos, 0.1f);
+            grid.position = SnapCoordinateToGrid(objectToMove.position);
         }
     }
 
@@ -52,5 +54,12 @@ public class MoveCamera : MonoBehaviour
             float newSize = virtualCamera.m_Lens.OrthographicSize - scroll * zoomSpeed;
             virtualCamera.m_Lens.OrthographicSize = Mathf.Clamp(newSize, minZoom, maxZoom);
         }
+    }
+
+    private Vector3 SnapCoordinateToGrid(Vector3 position)
+    {
+        Vector3Int cellPosition = BuildingSystem.instance.gridLayout.WorldToCell(position);
+
+        return new Vector2(cellPosition.x, cellPosition.y);
     }
 }

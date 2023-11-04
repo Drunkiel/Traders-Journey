@@ -7,9 +7,10 @@ public class BuildingSystem : MonoBehaviour
     public static BuildingSystem instance;
     public static bool inBuildingMode;
 
-    [SerializeField] private GridLayout gridLayout;
+    public GridLayout gridLayout;
 
     public GameObject buildingState;
+    public GameObject buildingGrid;
     [SerializeField] private Color32[] colors;
 
     [SerializeField] private GameObject UI;
@@ -118,9 +119,13 @@ public class BuildingSystem : MonoBehaviour
         {
             if (BuildingValidation())
             {
-                ResourcesData.instance.RemoveResources(_objectToPlace.GetComponent<BuildingID>()._prices);
+                BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
+                ResourcesData.instance.RemoveResources(_buildingID._prices);
+                allBuildings.Add(_buildingID);
+
                 _objectToPlace.Place();
             }
+            else Destroy(_objectToPlace.gameObject);
         }
         else Destroy(_objectToPlace.gameObject);
         UI.SetActive(false);
@@ -129,20 +134,17 @@ public class BuildingSystem : MonoBehaviour
 
     private bool BuildingValidation()
     {
+        //Check if building can be placed once
         BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
         if (_buildingID.onlyOne)
         {
-            if (!CheckIfExists(_buildingID.buildingName))
-            {
-                allBuildings.Add(_buildingID);
-                return true;
-            }
-            else
+            if (CheckIfExists(_buildingID.buildingName))
             {
                 DestroyButton();
                 return false;
             }
         }
+
         return true;
     }
 
@@ -164,7 +166,20 @@ public class BuildingSystem : MonoBehaviour
 
     private bool CanBePlaced()
     {
+        //Check if building exists
         if (_objectToPlace == null) return false;
+
+        //Other checks
+        //Check if building is in owned chunk
+        ChunkController.FindChunk(_objectToPlace.transform.position);
+        if (ChunkController.idOfAllOwnedChunks.Count <= 0) return false;
+        if (!actualChunk.isOwned) return false;
+        //Check if resources
+        if (!ResourcesData.instance.CheckIfAllResources(_objectToPlace.GetComponent<BuildingID>()._prices))
+        {
+            print("Brak materia³ów");
+            DestroyButton();
+        }
         return !_objectToPlace.transform.GetComponent<MultiTriggerController>().isTriggered;
     }
 
