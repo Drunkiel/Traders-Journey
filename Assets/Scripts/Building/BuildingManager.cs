@@ -28,6 +28,7 @@ public class BuildingManager : MonoBehaviour
         if (_buildingPanel.isShown) return;
         if (buildingUI.activeSelf) return;
         if (environmentUI.activeSelf) return;
+        if (BuildingSystem.instance._objectToPlace != null) return;
 
         BuildingSystem.inBuildingMode = false;
         BuildingSystem.instance.buildingGrid.SetActive(false);

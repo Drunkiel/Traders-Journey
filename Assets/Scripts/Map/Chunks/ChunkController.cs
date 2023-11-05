@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 
 public class ChunkController : MonoBehaviour
@@ -42,13 +41,37 @@ public class ChunkController : MonoBehaviour
 
     public static void FindChunk(Vector3 buildingPosition)
     {
-        if (idOfAllOwnedChunks.Count <= 0) return;
+        if (idOfAllOwnedChunks.Count <= 0)
+        {
+            BuildingSystem.instance.actualChunk = null;
+            return;
+        }
+
+        BuildingSystem.instance.actualChunk = null;
 
         for (int i = 0; i < idOfAllOwnedChunks.Count; i++)
         {
-            float distance = Vector3.Distance(allChunks[idOfAllOwnedChunks[i]].transform.position, buildingPosition);
+            SingleChunk chunk = allChunks[idOfAllOwnedChunks[i]];
 
-            if (distance <= 20) BuildingSystem.instance.actualChunk = allChunks[idOfAllOwnedChunks[i]];
+            Vector3 chunkCenter = chunk.transform.position;
+            float chunkSize = MapGenerator.mapSize.x;
+
+            bool[] correction = BuildingSystem.instance.SizeCorrection();
+
+            //Calculate distances if in chunk
+            float distanceX = Mathf.Abs(buildingPosition.x - chunkCenter.x);
+            float distanceY = Mathf.Abs(buildingPosition.y - chunkCenter.y);
+
+            if (distanceX <= chunkSize - (correction[0] ? 1 : 0) && distanceY <= chunkSize - (correction[1] ? 1 : 0))
+            {
+                BuildingSystem.instance.actualChunk = chunk;
+                break; 
+            }
+
+            print("Chunk: " + idOfAllOwnedChunks[i] + ", DistanceX: " + distanceX + ", DistanceY: " + distanceY);
         }
     }
+
+
+
 }

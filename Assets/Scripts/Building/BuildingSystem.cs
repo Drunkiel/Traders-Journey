@@ -50,6 +50,23 @@ public class BuildingSystem : MonoBehaviour
     {
         Vector3Int cellPosition = gridLayout.WorldToCell(position);
 
+        bool[] correctSize = SizeCorrection(); //0 is X || 1 is Y
+
+        int addX = (correctSize[0] ? 1 : 0);
+        int addY = (correctSize[1] ? 1 : 0);
+
+        if (position.x > MapGenerator.mapSize.x * 20 ||
+            position.x < -MapGenerator.mapSize.x * 20 + addX ||
+            position.y > MapGenerator.mapSize.y * 20 ||
+            position.y < -MapGenerator.mapSize.y * 20 + addY
+            )
+            return SnapCoordinateToGrid(Vector3.zero);
+
+        return new Vector2(cellPosition.x + (correctSize[0] ? 0f : 0.5f), cellPosition.y + (correctSize[1] ? 0f : 0.5f));
+    }
+
+    public bool[] SizeCorrection()
+    {
         bool additionalX = false;
         bool additionalY = false;
 
@@ -59,17 +76,7 @@ public class BuildingSystem : MonoBehaviour
             if (_objectToPlace.GetComponent<BuildingID>().size.y > 1) additionalY = true;
         }
 
-        int addX = (additionalX ? 1 : 0);
-        int addY = (additionalY ? 1 : 0);
-
-        if (position.x > MapGenerator.mapSize.x ||
-            position.x < -MapGenerator.mapSize.x + addX ||
-            position.y > MapGenerator.mapSize.y ||
-            position.y < -MapGenerator.mapSize.y + addY
-            )
-            return SnapCoordinateToGrid(Vector3.zero);
-
-        return new Vector2(cellPosition.x + (additionalX ? 0f : 0.5f), cellPosition.y + (additionalY ? 0f : 0.5f));
+        return new bool[2] { additionalX, additionalY };
     }
 
     public void InitializeWithObject(GameObject prefab)
@@ -170,16 +177,23 @@ public class BuildingSystem : MonoBehaviour
         if (_objectToPlace == null) return false;
 
         //Other checks
-        //Check if building is in owned chunk
-        ChunkController.FindChunk(_objectToPlace.transform.position);
-        if (ChunkController.idOfAllOwnedChunks.Count <= 0) return false;
-        if (!actualChunk.isOwned) return false;
         //Check if resources
         if (!ResourcesData.instance.CheckIfAllResources(_objectToPlace.GetComponent<BuildingID>()._prices))
         {
             print("Brak materia³ów");
             DestroyButton();
         }
+        //Check if building is in owned chunk
+        ChunkController.FindChunk(_objectToPlace.transform.position);
+        if (ChunkController.idOfAllOwnedChunks.Count <= 0) return false;
+        if (actualChunk == null) return false;
+        if (!actualChunk.isOwned)
+        {
+            print("Chunk nie jest twoj¹ w³asnoœci¹");
+            return false;
+        }
+
+        //If everything is okay
         return !_objectToPlace.transform.GetComponent<MultiTriggerController>().isTriggered;
     }
 
