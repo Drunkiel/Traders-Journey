@@ -62,13 +62,12 @@ public class ChunkController : MonoBehaviour
             float distanceX = Mathf.Abs(buildingPosition.x - chunkCenter.x);
             float distanceY = Mathf.Abs(buildingPosition.y - chunkCenter.y);
 
+            //If finds stop the function
             if (distanceX <= chunkSize - (correction[0] ? 1 : 0) && distanceY <= chunkSize - (correction[1] ? 1 : 0))
             {
                 BuildingSystem.instance.actualChunk = chunk;
                 break; 
             }
-
-            print("Chunk: " + idOfAllOwnedChunks[i] + ", DistanceX: " + distanceX + ", DistanceY: " + distanceY);
         }
     }
 
