@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   castleBuildings:
   - {fileID: 1887772150512011310, guid: 476afe974fa5a5b47ae39b95a2e6fa74, type: 3}
+  - {fileID: 6171173270858816383, guid: dd4c7227df0484748beba4e127ccef83, type: 3}
   houseBuildings:
   - {fileID: 7629149291417797206, guid: 6d6f342c8640d14488899c5534928ace, type: 3}
   - {fileID: 6406139448012037021, guid: 3663412b2cf937e4fa1af3436e577776, type: 3}
