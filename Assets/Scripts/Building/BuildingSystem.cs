@@ -110,17 +110,17 @@ public class BuildingSystem : MonoBehaviour
         UI.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
 
         //Adding new listeners
-        UI.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => PlaceButton());
+        UI.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => MultiPlaceButton()  /*DefaultPlaceButton()*/);
 
         if (destroy) UI.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => DestroyButton());
         else
         {
             Vector3 oldPosition = _objectToPlace.transform.position;
-            UI.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => { _objectToPlace.transform.position = oldPosition; PlaceButton(); });
+            UI.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => { _objectToPlace.transform.position = oldPosition; MultiPlaceButton(); /*DefaultPlaceButton()*/; });
         }
     }
 
-    private void PlaceButton()
+    private void DefaultPlaceButton()
     {
         if (CanBePlaced())
         {
@@ -129,7 +129,6 @@ public class BuildingSystem : MonoBehaviour
                 BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
                 ResourcesData.instance.RemoveResources(_buildingID._prices);
                 allBuildings.Add(_buildingID);
-
                 _objectToPlace.Place();
             }
             else Destroy(_objectToPlace.gameObject);
@@ -137,6 +136,45 @@ public class BuildingSystem : MonoBehaviour
         else Destroy(_objectToPlace.gameObject);
         UI.SetActive(false);
         BuildingManager.instance.TurnOffBuildingMode();
+    }
+
+    private void MultiPlaceButton()
+    {
+        MultiBuildingController _controller = GetComponent<MultiBuildingController>();
+
+        if (CanBePlaced())
+        {
+            if (!_controller.isStartPositionPlaced)
+            {
+                _controller.startPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
+                _controller.isStartPositionPlaced = true;
+
+                GameObject building = _objectToPlace.gameObject;
+                _objectToPlace.Place();
+                InitializeWithObject(building);
+                _objectToPlace.transform.position = _controller.startPosition;
+                return;
+            }
+
+            if (!_controller.isEndPositionPlaced)
+            {
+                _controller.endPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
+                _controller.isEndPositionPlaced = true;
+
+                BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
+                ResourcesData.instance.RemoveResources(_buildingID._prices);
+                allBuildings.Add(_buildingID);
+
+                _objectToPlace.Place();
+            }
+        }
+        else Destroy(_objectToPlace.gameObject);
+        
+        if (_controller.isEndPositionPlaced)
+        {
+            UI.SetActive(false);
+            BuildingManager.instance.TurnOffBuildingMode();
+        }
     }
 
     private bool BuildingValidation()
@@ -171,7 +209,7 @@ public class BuildingSystem : MonoBehaviour
         BuildingManager.instance.TurnOffBuildingMode();
     }
 
-    private bool CanBePlaced()
+    private bool CanBePlaced(int quantity = 1)
     {
         //Check if building exists
         if (_objectToPlace == null) return false;
@@ -183,6 +221,7 @@ public class BuildingSystem : MonoBehaviour
             print("Brak materia³ów");
             DestroyButton();
         }
+
         //Check if building is in owned chunk
         ChunkController.FindChunk(_objectToPlace.transform.position);
         if (ChunkController.idOfAllOwnedChunks.Count <= 0) return false;

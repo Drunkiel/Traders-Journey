@@ -6831,7 +6831,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 210251903
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &898317023
 RectTransform:
@@ -15360,6 +15360,7 @@ GameObject:
   - component: {fileID: 1947814918}
   - component: {fileID: 1947814917}
   - component: {fileID: 1947814919}
+  - component: {fileID: 1947814921}
   - component: {fileID: 1947814920}
   m_Layer: 0
   m_Name: Map
@@ -15486,6 +15487,22 @@ MonoBehaviour:
   _buildingPanel: {fileID: 1510423692}
   buildingUI: {fileID: 141061280}
   environmentUI: {fileID: 703835969}
+--- !u!114 &1947814921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947814913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51cdfd9ee8370842b54d5b1039606b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPosition: {x: 0, y: 0, z: 0}
+  endPosition: {x: 0, y: 0, z: 0}
+  isStartPositionPlaced: 0
+  isEndPositionPlaced: 0
 --- !u!1 &1948951080
 GameObject:
   m_ObjectHideFlags: 0

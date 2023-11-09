@@ -177,38 +177,38 @@ public class ResourcesData : MonoBehaviour
         diamondBox.quantityText.text = PlayerResources.diamondQuantity.ToString();
     }
 
-    public bool CheckIfAllResources(Price[] prices)
+    public bool CheckIfAllResources(Price[] prices, int quantity = 1)
     {
         for (int i = 0; i < prices.Length; i++)
         {
             switch (prices[i].resources)
             {
                 case Resources.Population:
-                    if (PlayerResources.populationQuantity - prices[i].quantity < 0) { print(PlayerResources.populationQuantity - prices[i].quantity); return false; }
+                    if (PlayerResources.populationQuantity - prices[i].quantity * quantity < 0) { print(PlayerResources.populationQuantity - prices[i].quantity * quantity); return false; }
                     break;
                 case Resources.Coins:
-                    if (PlayerResources.coinsQuantity - prices[i].quantity < 0) { print(PlayerResources.coinsQuantity - prices[i].quantity); return false; }
+                    if (PlayerResources.coinsQuantity - prices[i].quantity * quantity < 0) { print(PlayerResources.coinsQuantity - prices[i].quantity * quantity); return false; }
                     break;
                 case Resources.Supplies:
-                    if (PlayerResources.suppliesQuantity - prices[i].quantity < 0) { print(PlayerResources.suppliesQuantity - prices[i].quantity); return false; }
+                    if (PlayerResources.suppliesQuantity - prices[i].quantity * quantity < 0) { print(PlayerResources.suppliesQuantity - prices[i].quantity * quantity); return false; }
                     break;
                 case Resources.Wheat:
-                    if (PlayerResources.wheatQuantity - prices[i].quantity < 0) { print(PlayerResources.wheatQuantity - prices[i].quantity); return false; }
+                    if (PlayerResources.wheatQuantity - prices[i].quantity * quantity < 0) { print(PlayerResources.wheatQuantity - prices[i].quantity * quantity); return false; }
                     break;
                 case Resources.Meat:
-                    if (PlayerResources.meatQuantity - prices[i].quantity < 0) { print(PlayerResources.meatQuantity - prices[i].quantity); return false; }
+                    if (PlayerResources.meatQuantity - prices[i].quantity * quantity < 0) { print(PlayerResources.meatQuantity - prices[i].quantity * quantity); return false; }
                     break;
                 case Resources.Stone:
-                    if (PlayerResources.stoneQuantity - prices[i].quantity < 0) { print(PlayerResources.stoneQuantity - prices[i].quantity); return false; }
+                    if (PlayerResources.stoneQuantity - prices[i].quantity * quantity < 0) { print(PlayerResources.stoneQuantity - prices[i].quantity * quantity); return false; }
                     break;
                 case Resources.Gold:
-                    if (PlayerResources.goldQuantity - prices[i].quantity < 0) { print(PlayerResources.goldQuantity - prices[i].quantity); return false; }
+                    if (PlayerResources.goldQuantity - prices[i].quantity * quantity < 0) { print(PlayerResources.goldQuantity - prices[i].quantity * quantity); return false; }
                     break;
                 case Resources.Silver:
-                    if (PlayerResources.silverQuantity - prices[i].quantity < 0) { print(PlayerResources.silverQuantity - prices[i].quantity); return false; }
+                    if (PlayerResources.silverQuantity - prices[i].quantity * quantity < 0) { print(PlayerResources.silverQuantity - prices[i].quantity * quantity); return false; }
                     break;
                 case Resources.Diamond:
-                    if (PlayerResources.diamondQuantity - prices[i].quantity < 0) { print(PlayerResources.diamondQuantity - prices[i].quantity); return false; }
+                    if (PlayerResources.diamondQuantity - prices[i].quantity * quantity < 0) { print(PlayerResources.diamondQuantity - prices[i].quantity * quantity); return false; }
                     break;
             }
         }
