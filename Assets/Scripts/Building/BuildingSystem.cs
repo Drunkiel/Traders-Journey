@@ -15,6 +15,7 @@ public class BuildingSystem : MonoBehaviour
 
     [SerializeField] private GameObject UI;
     public PlacableObject _objectToPlace;
+    [HideInInspector] public GameObject objectToPlaceCopy;
     public SingleChunk actualChunk;
     [SerializeField] private List<BuildingID> allBuildings = new List<BuildingID>();
 
@@ -87,7 +88,7 @@ public class BuildingSystem : MonoBehaviour
         GameObject newObject = Instantiate(prefab);
         _objectToPlace = newObject.GetComponent<PlacableObject>();
 
-        Vector3 position = SnapCoordinateToGrid(Vector3.zero);
+        Vector3 position = SnapCoordinateToGrid(Camera.main.transform.position);
         newObject.transform.position = position;
 
         Instantiate(buildingState, newObject.transform);
@@ -149,10 +150,11 @@ public class BuildingSystem : MonoBehaviour
                 _controller.startPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
                 _controller.isStartPositionPlaced = true;
 
-                GameObject building = _objectToPlace.gameObject;
+                //Create replic of placed object
                 _objectToPlace.Place();
-                InitializeWithObject(building);
-                _objectToPlace.transform.position = _controller.startPosition;
+                InitializeWithObject(objectToPlaceCopy);
+
+                _objectToPlace.transform.position = SnapCoordinateToGrid(Camera.main.transform.position);
                 return;
             }
 
@@ -162,8 +164,7 @@ public class BuildingSystem : MonoBehaviour
                 _controller.isEndPositionPlaced = true;
 
                 BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
-                ResourcesData.instance.RemoveResources(_buildingID._prices);
-                allBuildings.Add(_buildingID);
+                ResourcesData.instance.RemoveResources(_buildingID._prices, 2);
 
                 _objectToPlace.Place();
             }
@@ -174,6 +175,9 @@ public class BuildingSystem : MonoBehaviour
         {
             UI.SetActive(false);
             BuildingManager.instance.TurnOffBuildingMode();
+
+            _controller.isStartPositionPlaced = false;
+            _controller.isEndPositionPlaced = false;
         }
     }
 

@@ -91,12 +91,8 @@ public class WalkerController : MonoBehaviour
                 if (distances[j] < distances[minIndex]) minIndex = j;
             }
 
-            int temp1 = a[i];
-            a[i] = a[minIndex];
-            a[minIndex] = temp1;
-            float temp2 = distances[i];
-            distances[i] = distances[minIndex];
-            distances[minIndex] = temp2;
+            (a[minIndex], a[i]) = (a[i], a[minIndex]);
+            (distances[minIndex], distances[i]) = (distances[i], distances[minIndex]);
         }
 
         return possibleMoves[a[0]];
