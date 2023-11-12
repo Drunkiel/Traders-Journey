@@ -142,6 +142,7 @@ public class BuildingSystem : MonoBehaviour
     private void MultiPlaceButton()
     {
         MultiBuildingController _controller = GetComponent<MultiBuildingController>();
+        BuildingID _buildingID = objectToPlaceCopy.GetComponent<BuildingID>();
 
         if (CanBePlaced())
         {
@@ -152,9 +153,10 @@ public class BuildingSystem : MonoBehaviour
 
                 //Create replic of placed object
                 _objectToPlace.Place();
+                ResourcesData.instance.RemoveResources(_buildingID._prices);
                 InitializeWithObject(objectToPlaceCopy);
-
                 _objectToPlace.transform.position = SnapCoordinateToGrid(Camera.main.transform.position);
+
                 return;
             }
 
@@ -163,18 +165,25 @@ public class BuildingSystem : MonoBehaviour
                 _controller.endPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
                 _controller.isEndPositionPlaced = true;
 
-                BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
-                ResourcesData.instance.RemoveResources(_buildingID._prices, 2);
-
                 _objectToPlace.Place();
+                ResourcesData.instance.RemoveResources(_buildingID._prices);
+
+                _controller.MakePath();
+
+                for (int i = 0; i < _controller.newPositions.Count - 1; i++)
+                {
+                    InitializeWithObject(objectToPlaceCopy);
+                    _objectToPlace.transform.position = _controller.newPositions[i];
+                    _objectToPlace.Place();
+                    ResourcesData.instance.RemoveResources(_buildingID._prices);
+                }
             }
         }
         else Destroy(_objectToPlace.gameObject);
         
         if (_controller.isEndPositionPlaced)
         {
-            UI.SetActive(false);
-            BuildingManager.instance.TurnOffBuildingMode();
+            DestroyButton();
 
             _controller.isStartPositionPlaced = false;
             _controller.isEndPositionPlaced = false;
@@ -213,7 +222,7 @@ public class BuildingSystem : MonoBehaviour
         BuildingManager.instance.TurnOffBuildingMode();
     }
 
-    private bool CanBePlaced(int quantity = 1)
+    public bool CanBePlaced()
     {
         //Check if building exists
         if (_objectToPlace == null) return false;
