@@ -48,6 +48,9 @@ TagManager:
   - name: Building
     uniqueID: 670722673
     locked: 0
+  - name: NPC
+    uniqueID: 4185237925
+    locked: 0
   - name: UI
     uniqueID: 210251903
     locked: 0

@@ -18,6 +18,7 @@ public class BuildingSystem : MonoBehaviour
     [HideInInspector] public GameObject objectToPlaceCopy;
     public SingleChunk actualChunk;
     [SerializeField] private List<BuildingID> allBuildings = new List<BuildingID>();
+    [SerializeField] private List<BuildingID> allPaths = new List<BuildingID>();
 
     void Awake()
     {
@@ -144,43 +145,42 @@ public class BuildingSystem : MonoBehaviour
         MultiBuildingController _controller = GetComponent<MultiBuildingController>();
         BuildingID _buildingID = objectToPlaceCopy.GetComponent<BuildingID>();
 
-        if (CanBePlaced())
+        if (!_controller.isStartPositionPlaced)
         {
-            if (!_controller.isStartPositionPlaced)
-            {
-                _controller.startPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
-                _controller.isStartPositionPlaced = true;
+            if (!CanBePlaced()) return;
+            _controller.startPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
+            _controller.isStartPositionPlaced = true;
 
-                //Create replic of placed object
-                _objectToPlace.Place();
-                ResourcesData.instance.RemoveResources(_buildingID._prices);
-                InitializeWithObject(objectToPlaceCopy);
-                _objectToPlace.transform.position = SnapCoordinateToGrid(Camera.main.transform.position);
+            //Create replic of placed object
+            _objectToPlace.Place();
+            ResourcesData.instance.RemoveResources(_buildingID._prices);
+            InitializeWithObject(objectToPlaceCopy);
+            _objectToPlace.transform.position = SnapCoordinateToGrid(Camera.main.transform.position);
 
-                return;
-            }
-
-            if (!_controller.isEndPositionPlaced)
-            {
-                _controller.endPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
-                _controller.isEndPositionPlaced = true;
-
-                _objectToPlace.Place();
-                ResourcesData.instance.RemoveResources(_buildingID._prices);
-
-                _controller.MakePath();
-
-                for (int i = 0; i < _controller.newPositions.Count - 1; i++)
-                {
-                    InitializeWithObject(objectToPlaceCopy);
-                    _objectToPlace.transform.position = _controller.newPositions[i];
-                    _objectToPlace.Place();
-                    ResourcesData.instance.RemoveResources(_buildingID._prices);
-                }
-            }
+            return;
         }
-        else Destroy(_objectToPlace.gameObject);
-        
+
+        if (!_controller.isEndPositionPlaced)
+        {
+            if (!CanBePlaced()) return;
+            _controller.endPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
+            _controller.isEndPositionPlaced = true;
+
+            _objectToPlace.Place();
+
+            _controller.MakePath();
+
+            for (int i = 0; i < _controller.bestPositions.Count - 1; i++)
+            {
+                InitializeWithObject(objectToPlaceCopy);
+                _objectToPlace.transform.position = _controller.bestPositions[i];
+                allPaths.Add(_buildingID);
+                _objectToPlace.Place();
+            }
+
+            ResourcesData.instance.RemoveResources(_buildingID._prices, _controller.bestPositions.Count );
+        }
+
         if (_controller.isEndPositionPlaced)
         {
             DestroyButton();

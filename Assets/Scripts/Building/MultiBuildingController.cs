@@ -10,19 +10,19 @@ public class MultiBuildingController : MonoBehaviour
     public bool isStartPositionPlaced;
     public bool isEndPositionPlaced;
 
-    public List<Vector2> newPositions = new List<Vector2>();
+    public List<Vector2> bestPositions = new List<Vector2>();
     Vector2Int[] possibleMoves = new Vector2Int[4] { new Vector2Int(0, 1), new Vector2Int(-1, 0), new Vector2Int(0, -1), new Vector2Int(1, 0) }; //top, left, bottom, right
 
     public void MakePath()
     {
         currentPosition = startPosition;
-        newPositions.Clear();
+        bestPositions.Clear();
 
         while (currentPosition != endPosition)
         {
             Vector2 bestMove = GetBestMoves(currentPosition);
             currentPosition = BuildingSystem.instance.SnapCoordinateToGrid(new Vector3(currentPosition.x + bestMove.x, currentPosition.y + bestMove.y));
-            newPositions.Add(currentPosition);
+            bestPositions.Add(currentPosition);
         }
     }
 
