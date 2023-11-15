@@ -216,6 +216,8 @@ MonoBehaviour:
   - {fileID: 1502929719, guid: f56124c2841151d47a034147f4d166a0, type: 3}
   - {fileID: 896679794, guid: f56124c2841151d47a034147f4d166a0, type: 3}
   onlyOne: 1
+  needPath: 1
+  multiPlace: 0
   size: {x: 2, y: 2}
   buildingLevel: 1
   _prices:
@@ -266,6 +268,7 @@ MonoBehaviour:
   - Environment
   - Water
   - Building
+  - Path
 --- !u!95 &231824053571383361
 Animator:
   serializedVersion: 5

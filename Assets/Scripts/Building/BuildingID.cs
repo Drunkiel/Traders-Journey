@@ -10,14 +10,19 @@ public class Price
 
 public class BuildingID : MonoBehaviour
 {
+    [Header("Basic building informations")]
     public string buildingName;
     public Sprite[] buildingSprites;
     public bool onlyOne;
+    public bool needPath = true;
+    public bool multiPlace;
     public Vector2 size;
     public int buildingLevel;
+
+    [Header("Cost and production of the building")]
     public Price[] _prices;
     public Production[] _productions;
-    public BuildingProduction _buildingProduction;
+    [SerializeField] private BuildingProduction _buildingProduction;
 
     private void Start()
     {

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3815631317022005292}
   - component: {fileID: 2431151355666269730}
   - component: {fileID: 6892979695688112610}
-  - component: {fileID: 4347470660447880055}
   m_Layer: 0
   m_Name: Path
   m_TagString: Building
@@ -123,11 +122,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98577726796734343ad4dfef2135e7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingName: Barrack
+  buildingName: Path
   buildingSprites:
   - {fileID: 732606831, guid: 499385120f6046e44a7bae46d0299a62, type: 3}
   - {fileID: -782044842, guid: 499385120f6046e44a7bae46d0299a62, type: 3}
   onlyOne: 0
+  needPath: 0
+  multiPlace: 1
   size: {x: 1, y: 1}
   buildingLevel: 1
   _prices:
@@ -169,6 +170,7 @@ MonoBehaviour:
   - Environment
   - Water
   - Building
+  - Path
 --- !u!95 &6892979695688112610
 Animator:
   serializedVersion: 5
@@ -190,18 +192,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4347470660447880055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6171173270858816383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ac3fc504b882e4eb8ee819c95c545c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8500410242479529246
 GameObject:
   m_ObjectHideFlags: 0

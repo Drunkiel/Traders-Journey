@@ -231,7 +231,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!61 &-2099909089366672511
@@ -296,6 +296,8 @@ MonoBehaviour:
   - {fileID: 479305397, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   - {fileID: 1982651778, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   onlyOne: 0
+  needPath: 1
+  multiPlace: 0
   size: {x: 2, y: 1}
   buildingLevel: 0
   _prices: []
@@ -335,6 +337,7 @@ MonoBehaviour:
   - Environment
   - Water
   - Building
+  - Path
 --- !u!95 &-1863089512545153374
 Animator:
   serializedVersion: 5

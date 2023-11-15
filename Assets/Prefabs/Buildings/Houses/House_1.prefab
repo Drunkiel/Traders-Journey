@@ -210,6 +210,8 @@ MonoBehaviour:
   buildingSprites:
   - {fileID: -916400698, guid: 1accee2a2bceaf6489d39895dbbce7e4, type: 3}
   onlyOne: 0
+  needPath: 1
+  multiPlace: 0
   size: {x: 1, y: 1}
   buildingLevel: 1
   _prices: []
@@ -249,6 +251,7 @@ MonoBehaviour:
   - Environment
   - Water
   - Building
+  - Path
 --- !u!95 &-6811650850341310142
 Animator:
   serializedVersion: 5

@@ -8,6 +8,7 @@ TagManager:
   - Water
   - Building
   - Chunk
+  - Path
   layers:
   - Default
   - TransparentFX

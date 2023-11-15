@@ -11,7 +11,7 @@ public class BuildingSystem : MonoBehaviour
 
     public GameObject buildingState;
     public GameObject buildingGrid;
-    [SerializeField] private Color32[] colors;
+    public Color32[] colors;
 
     [SerializeField] private GameObject UI;
     public PlacableObject _objectToPlace;
@@ -112,13 +112,22 @@ public class BuildingSystem : MonoBehaviour
         UI.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
 
         //Adding new listeners
-        UI.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => MultiPlaceButton()  /*DefaultPlaceButton()*/);
+        UI.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
+        {
+            if (!_objectToPlace.GetComponent<BuildingID>().multiPlace) DefaultPlaceButton();
+            else MultiPlaceButton();
+        });
 
         if (destroy) UI.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => DestroyButton());
         else
         {
             Vector3 oldPosition = _objectToPlace.transform.position;
-            UI.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => { _objectToPlace.transform.position = oldPosition; MultiPlaceButton(); /*DefaultPlaceButton()*/; });
+            UI.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => 
+            {
+                _objectToPlace.transform.position = oldPosition;
+                if (!_objectToPlace.GetComponent<BuildingID>().multiPlace) DefaultPlaceButton();
+                else MultiPlaceButton();
+            });
         }
     }
 
@@ -217,12 +226,21 @@ public class BuildingSystem : MonoBehaviour
 
     public void DestroyButton()
     {
-        if (_objectToPlace != null) Destroy(_objectToPlace.gameObject);
+        if (_objectToPlace != null)
+        {
+            Destroy(_objectToPlace.gameObject);
+            if (_objectToPlace.GetComponent<BuildingID>().multiPlace)
+            {
+                MultiBuildingController _controller = GetComponent<MultiBuildingController>();
+                _controller.isStartPositionPlaced = false;
+                _controller.isEndPositionPlaced = false;
+            }
+        }
         UI.SetActive(false);
         BuildingManager.instance.TurnOffBuildingMode();
     }
 
-    public bool CanBePlaced()
+    private bool CanBePlaced()
     {
         //Check if building exists
         if (_objectToPlace == null) return false;
@@ -237,7 +255,6 @@ public class BuildingSystem : MonoBehaviour
 
         //Check if building is in owned chunk
         ChunkController.FindChunk(_objectToPlace.transform.position);
-        if (ChunkController.idOfAllOwnedChunks.Count <= 0) return false;
         if (actualChunk == null) return false;
         if (!actualChunk.isOwned)
         {
