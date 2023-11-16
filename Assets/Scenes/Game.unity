@@ -15640,6 +15640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridLayout: {fileID: 1090216696}
   buildingState: {fileID: 2954530093267141738, guid: 0de9a3e7cea38014e8c69dfe5f473c06, type: 3}
+  pathTester: {fileID: 3673743975170402223, guid: 15a609436d53c4149a89fc462e0388b3, type: 3}
   buildingGrid: {fileID: 1602948070}
   colors:
   - serializedVersion: 2
@@ -17635,7 +17636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -10,11 +10,13 @@ public class BuildingSystem : MonoBehaviour
     public GridLayout gridLayout;
 
     public GameObject buildingState;
+    public GameObject pathTester;
     public GameObject buildingGrid;
     public Color32[] colors;
 
     [SerializeField] private GameObject UI;
     public PlacableObject _objectToPlace;
+    [HideInInspector] public PathTester _pathTester;
     [HideInInspector] public GameObject objectToPlaceCopy;
     public SingleChunk actualChunk;
     [SerializeField] private List<BuildingID> allBuildings = new List<BuildingID>();
@@ -31,11 +33,10 @@ public class BuildingSystem : MonoBehaviour
 
         ChangeMaterial(CanBePlaced());
 
-        /*        if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    PlaceButton();
-                }
-                else if (Input.GetKeyDown(KeyCode.Escape)) DestroyButton();*/
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _objectToPlace.transform.position = SnapCoordinateToGrid(GetMouseWorldPosition());
+        }
     }
 
     public static Vector3 GetMouseWorldPosition()
@@ -92,6 +93,8 @@ public class BuildingSystem : MonoBehaviour
         Vector3 position = SnapCoordinateToGrid(Camera.main.transform.position);
         newObject.transform.position = position;
 
+        if (_objectToPlace.GetComponent<BuildingID>().needPath) Instantiate(pathTester);
+
         Instantiate(buildingState, newObject.transform);
         newObject.AddComponent<ObjectDrag>();
 
@@ -142,9 +145,10 @@ public class BuildingSystem : MonoBehaviour
                 allBuildings.Add(_buildingID);
                 _objectToPlace.Place();
             }
-            else Destroy(_objectToPlace.gameObject);
+            else DestroyButton();
         }
-        else Destroy(_objectToPlace.gameObject);
+        else DestroyButton();
+
         UI.SetActive(false);
         BuildingManager.instance.TurnOffBuildingMode();
     }
@@ -156,7 +160,7 @@ public class BuildingSystem : MonoBehaviour
 
         if (!_controller.isStartPositionPlaced)
         {
-            if (!CanBePlaced()) return;
+            if (!CanBePlaced()) DestroyButton();
             _controller.startPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
             _controller.isStartPositionPlaced = true;
 
@@ -171,7 +175,7 @@ public class BuildingSystem : MonoBehaviour
 
         if (!_controller.isEndPositionPlaced)
         {
-            if (!CanBePlaced()) return;
+            if (!CanBePlaced()) DestroyButton();
             _controller.endPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
             _controller.isEndPositionPlaced = true;
 
@@ -183,8 +187,12 @@ public class BuildingSystem : MonoBehaviour
             {
                 InitializeWithObject(objectToPlaceCopy);
                 _objectToPlace.transform.position = _controller.bestPositions[i];
-                allPaths.Add(_buildingID);
-                _objectToPlace.Place();
+                if (CanBePlaced())
+                {
+                    allPaths.Add(_buildingID);
+                    _objectToPlace.Place();
+                }
+                else DestroyButton();
             }
 
             ResourcesData.instance.RemoveResources(_buildingID._prices, _controller.bestPositions.Count );
@@ -228,14 +236,18 @@ public class BuildingSystem : MonoBehaviour
     {
         if (_objectToPlace != null)
         {
+            BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
             Destroy(_objectToPlace.gameObject);
-            if (_objectToPlace.GetComponent<BuildingID>().multiPlace)
+            if (_buildingID.multiPlace)
             {
                 MultiBuildingController _controller = GetComponent<MultiBuildingController>();
                 _controller.isStartPositionPlaced = false;
                 _controller.isEndPositionPlaced = false;
             }
+
+            if (_buildingID.needPath) Destroy(_pathTester.gameObject);
         }
+
         UI.SetActive(false);
         BuildingManager.instance.TurnOffBuildingMode();
     }
@@ -245,9 +257,11 @@ public class BuildingSystem : MonoBehaviour
         //Check if building exists
         if (_objectToPlace == null) return false;
 
+        BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
+
         //Other checks
         //Check if resources
-        if (!ResourcesData.instance.CheckIfAllResources(_objectToPlace.GetComponent<BuildingID>()._prices))
+        if (!ResourcesData.instance.CheckIfAllResources(_buildingID._prices))
         {
             print("Brak materia³ów");
             DestroyButton();
@@ -260,6 +274,17 @@ public class BuildingSystem : MonoBehaviour
         {
             print("Chunk nie jest twoj¹ w³asnoœci¹");
             return false;
+        }
+
+        //Check for path
+        if (_buildingID.needPath)
+        {
+            if (_pathTester == null) return false;
+            if (!_pathTester.CheckForPath())
+            {
+                print("Brak œcie¿ki");
+                return false;
+            }
         }
 
         //If everything is okay
