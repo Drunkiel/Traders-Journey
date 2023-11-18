@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8920592810176950629}
   - component: {fileID: 7001581694595988933}
   m_Layer: 0
-  m_Name: Tester2
+  m_Name: Tester3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,4 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTriggered: 0
   objectsTag:
+  - Environment
+  - Water
+  - Building
   - Path

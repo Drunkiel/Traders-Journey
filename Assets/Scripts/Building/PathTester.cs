@@ -28,11 +28,18 @@ public class PathTester : MonoBehaviour
             else return 0.5f;
         }
 
+        float getY()
+        {
+            if (_buildingID.size.y == 1) return 0;
+            else return 0.5f;
+        }
+
         for (int i = 0; i < _buildingID.size.x; i++)
         {
             GameObject newTester = Instantiate(prefab, transform);
             float x = getX();
-            newTester.transform.localPosition = new Vector2(i > 0 ? x : -x, -1 + -x);
+            float y = getY();
+            newTester.transform.localPosition = new Vector2(i > 0 ? x : -x, -1 + -y);
             _controllers.Add(newTester.GetComponent<MultiTriggerController>());
         }
     }

@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -9082,7 +9082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -15649,6 +15649,7 @@ MonoBehaviour:
     rgba: 840630527
   UI: {fileID: 1180216977}
   _objectToPlace: {fileID: 0}
+  _pathTester: {fileID: 0}
   objectToPlaceCopy: {fileID: 0}
   actualChunk: {fileID: 0}
   allBuildings: []
@@ -15682,6 +15683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosition: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
+  testerPrefab: {fileID: 253621178858529448, guid: e50f028fd77a66d44bea52c8e1c95536, type: 3}
   isStartPositionPlaced: 0
   isEndPositionPlaced: 0
   bestPositions: []
