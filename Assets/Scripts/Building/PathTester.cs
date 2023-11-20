@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PathTester : MonoBehaviour
 {
-    [SerializeField] private List<MultiTriggerController> _controllers = new List<MultiTriggerController>();
+    public List<MultiTriggerController> _controllers = new List<MultiTriggerController>();
     [SerializeField] private GameObject prefab;
     private BuildingID _buildingID;
 
@@ -16,7 +16,8 @@ public class PathTester : MonoBehaviour
 
     private void Update()
     {
-        transform.localPosition = _buildingID.transform.position;
+        if (_buildingID != null) transform.localPosition = _buildingID.transform.position;
+        else Destroy(transform.gameObject);
     }
 
     private void SpawnTesters()

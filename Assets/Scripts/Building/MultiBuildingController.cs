@@ -18,6 +18,7 @@ public class MultiBuildingController : MonoBehaviour
         currentPosition = startPosition;
         bestPositions.Clear();
 
+        bestPositions.Add(currentPosition);
         while (currentPosition != endPosition)
         {
             Vector2 bestMove = GetBestMoves(currentPosition);

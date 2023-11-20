@@ -1,40 +1,40 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class MultiTriggerController : MonoBehaviour
 {
     public bool isTriggered;
     public string[] objectsTag;
+    public HashSet<string> objectsTagsSet;
+
+    void Start()
+    {
+        objectsTagsSet = new HashSet<string>(objectsTag);
+    }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        for (int i = 0; i < objectsTag.Length; i++)
-        {
-            if (collider.CompareTag(objectsTag[i]))
-            {
-                isTriggered = true;
-            }
-        }
+        CheckCollision(collider);
     }
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        for (int i = 0; i < objectsTag.Length; i++)
-        {
-            if (collider.CompareTag(objectsTag[i]))
-            {
-                isTriggered = true;
-            }
-        }
+        CheckCollision(collider);
     }
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        for (int i = 0; i < objectsTag.Length; i++)
+        CheckCollision(collider, false);
+    }
+
+    void CheckCollision(Collider2D collider, bool enter = true)
+    {
+        string colliderTag = collider.tag;
+
+        if (objectsTagsSet.Contains(colliderTag))
         {
-            if (collider.CompareTag(objectsTag[i]))
-            {
-                isTriggered = false;
-            }
+            isTriggered = enter;
+            return;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,11 +17,12 @@ public class BuildingSystem : MonoBehaviour
 
     [SerializeField] private GameObject UI;
     public PlacableObject _objectToPlace;
-    [HideInInspector] public PathTester _pathTester;
+    public PathTester _pathTester;
     [HideInInspector] public GameObject objectToPlaceCopy;
     public SingleChunk actualChunk;
     [SerializeField] private List<BuildingID> allBuildings = new List<BuildingID>();
     [SerializeField] private List<BuildingID> allPaths = new List<BuildingID>();
+    private int placedBuildings;
 
     void Awake()
     {
@@ -31,7 +33,7 @@ public class BuildingSystem : MonoBehaviour
     {
         if (!_objectToPlace) return;
 
-        ChangeMaterial(CanBePlaced());
+        ChangeMaterial(_objectToPlace.canBePlaced);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -125,7 +127,7 @@ public class BuildingSystem : MonoBehaviour
         else
         {
             Vector3 oldPosition = _objectToPlace.transform.position;
-            UI.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => 
+            UI.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() =>
             {
                 _objectToPlace.transform.position = oldPosition;
                 if (!_objectToPlace.GetComponent<BuildingID>().multiPlace) DefaultPlaceButton();
@@ -136,7 +138,7 @@ public class BuildingSystem : MonoBehaviour
 
     private void DefaultPlaceButton()
     {
-        if (CanBePlaced())
+        if (_objectToPlace.canBePlaced)
         {
             if (BuildingValidation())
             {
@@ -149,8 +151,7 @@ public class BuildingSystem : MonoBehaviour
         }
         else DestroyButton();
 
-        UI.SetActive(false);
-        BuildingManager.instance.TurnOffBuildingMode();
+        DestroyButton();
     }
 
     private void MultiPlaceButton()
@@ -160,22 +161,21 @@ public class BuildingSystem : MonoBehaviour
 
         if (!_controller.isStartPositionPlaced)
         {
-            if (!CanBePlaced()) DestroyButton();
             _controller.startPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
             _controller.isStartPositionPlaced = true;
 
-            //Create replic of placed object
             _objectToPlace.Place();
             ResourcesData.instance.RemoveResources(_buildingID._prices);
+
+            //Create replic of placed object
             InitializeWithObject(objectToPlaceCopy);
-            _objectToPlace.transform.position = SnapCoordinateToGrid(Camera.main.transform.position);
+            _objectToPlace.transform.position = SnapCoordinateToGrid(_controller.startPosition);
 
             return;
         }
 
         if (!_controller.isEndPositionPlaced)
         {
-            if (!CanBePlaced()) DestroyButton();
             _controller.endPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
             _controller.isEndPositionPlaced = true;
 
@@ -183,28 +183,33 @@ public class BuildingSystem : MonoBehaviour
 
             _controller.MakePath();
 
-            for (int i = 0; i < _controller.bestPositions.Count - 1; i++)
-            {
-                InitializeWithObject(objectToPlaceCopy);
-                _objectToPlace.transform.position = _controller.bestPositions[i];
-                if (CanBePlaced())
-                {
-                    allPaths.Add(_buildingID);
-                    _objectToPlace.Place();
-                }
-                else DestroyButton();
-            }
-
-            ResourcesData.instance.RemoveResources(_buildingID._prices, _controller.bestPositions.Count );
+            StartCoroutine(StartPlacingObjects(_controller, _buildingID));
         }
 
-        if (_controller.isEndPositionPlaced)
+        if (_controller.isEndPositionPlaced) DestroyButton();
+    }
+
+    IEnumerator StartPlacingObjects(MultiBuildingController _controller, BuildingID _buildingID)
+    {
+        placedBuildings = 0;
+
+        for (int i = 0; i < _controller.bestPositions.Count - 1; i++)
         {
-            DestroyButton();
+            InitializeWithObject(objectToPlaceCopy);
+            _objectToPlace.transform.position = _controller.bestPositions[i];
+            yield return new WaitForSeconds(0.05f);
 
-            _controller.isStartPositionPlaced = false;
-            _controller.isEndPositionPlaced = false;
+            if (_objectToPlace.canBePlaced)
+            {
+                allPaths.Add(_buildingID);
+                _objectToPlace.Place();
+                placedBuildings++;
+            }
+            else DestroyButton();
         }
+
+        ResourcesData.instance.RemoveResources(_buildingID._prices, placedBuildings);
+        DestroyButton();
     }
 
     private bool BuildingValidation()
@@ -238,57 +243,17 @@ public class BuildingSystem : MonoBehaviour
         {
             BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
             Destroy(_objectToPlace.gameObject);
+
             if (_buildingID.multiPlace)
             {
                 MultiBuildingController _controller = GetComponent<MultiBuildingController>();
                 _controller.isStartPositionPlaced = false;
                 _controller.isEndPositionPlaced = false;
             }
-
-            if (_buildingID.needPath) Destroy(_pathTester.gameObject);
         }
 
         UI.SetActive(false);
         BuildingManager.instance.TurnOffBuildingMode();
-    }
-
-    private bool CanBePlaced()
-    {
-        //Check if building exists
-        if (_objectToPlace == null) return false;
-
-        BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
-
-        //Other checks
-        //Check if resources
-        if (!ResourcesData.instance.CheckIfAllResources(_buildingID._prices))
-        {
-            print("Brak materia³ów");
-            DestroyButton();
-        }
-
-        //Check if building is in owned chunk
-        ChunkController.FindChunk(_objectToPlace.transform.position);
-        if (actualChunk == null) return false;
-        if (!actualChunk.isOwned)
-        {
-            print("Chunk nie jest twoj¹ w³asnoœci¹");
-            return false;
-        }
-
-        //Check for path
-        if (_buildingID.needPath)
-        {
-            if (_pathTester == null) return false;
-            if (!_pathTester.CheckForPath())
-            {
-                print("Brak œcie¿ki");
-                return false;
-            }
-        }
-
-        //If everything is okay
-        return !_objectToPlace.transform.GetComponent<MultiTriggerController>().isTriggered;
     }
 
     private void ChangeMaterial(bool itCanBePlaced)

@@ -319,6 +319,7 @@ MonoBehaviour:
   isPlaced: 0
   vertices: []
   border: {fileID: 2954530093267141738, guid: 0de9a3e7cea38014e8c69dfe5f473c06, type: 3}
+  canBePlaced: 0
   objectsTag: []
 --- !u!114 &-6253720794463130994
 MonoBehaviour:
@@ -334,10 +335,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTriggered: 0
   objectsTag:
-  - Environment
   - Water
   - Building
   - Path
+  - Environment
 --- !u!95 &-1863089512545153374
 Animator:
   serializedVersion: 5
