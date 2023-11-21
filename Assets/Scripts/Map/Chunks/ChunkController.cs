@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ChunkController : MonoBehaviour
 {
-    public static Vector2Int singleChunkSize = new Vector2Int(11, 11);
+    public static Vector2Int singleChunkSize = new Vector2Int(10, 10);
 
     public static List<int> idOfAllNotOwnedChunks = new List<int>();
     public static List<int> idOfAllOwnedChunks = new List<int>();
@@ -20,9 +20,9 @@ public class ChunkController : MonoBehaviour
     private void GenerateChunks()
     {
         int index = 0;
-        for (int i = singleChunkSize.y - 1; i > -singleChunkSize.y; i--)
+        for (int i = MapGenerator.mapSize.y - 1; i > -MapGenerator.mapSize.y; i--)
         {
-            for (int j = -singleChunkSize.x + 1; j < singleChunkSize.x; j++)
+            for (int j = -MapGenerator.mapSize.x + 1; j < MapGenerator.mapSize.x; j++)
             {
                 //Create new chunk and rename it
                 GameObject newChunk = Instantiate(chunkPrefab, new Vector3(j * 20, i * 20, 0), Quaternion.identity, parent);
@@ -54,7 +54,7 @@ public class ChunkController : MonoBehaviour
             SingleChunk chunk = allChunks[idOfAllOwnedChunks[i]];
 
             Vector3 chunkCenter = chunk.transform.position;
-            float chunkSize = MapGenerator.mapSize.x;
+            float chunkSize = singleChunkSize.x;
 
             bool[] correction = BuildingSystem.instance.SizeCorrection();
 
@@ -70,7 +70,4 @@ public class ChunkController : MonoBehaviour
             }
         }
     }
-
-
-
 }

@@ -18,7 +18,7 @@ public class EnvironmentGenerator : MonoBehaviour
     public void GenerateEnvironment()
     {
         waterTilemap = MapGenerator.instance.waterTilemap;
-        StartCoroutine(GenerateEnvironment(GameController.isDevMode ? 0 : 0.05f));
+        StartCoroutine(GenerateEnvironment(0));
     }
 
     private IEnumerator GenerateEnvironment(float interval)
@@ -44,8 +44,8 @@ public class EnvironmentGenerator : MonoBehaviour
 
     private Vector3 GetPosition()
     {
-        int x = Random.Range(-MapGenerator.mapSize.x, MapGenerator.mapSize.x);
-        int y = Random.Range(-MapGenerator.mapSize.y, MapGenerator.mapSize.y);
+        int x = Random.Range(-ChunkController.singleChunkSize.x, ChunkController.singleChunkSize.x);
+        int y = Random.Range(-ChunkController.singleChunkSize.y, ChunkController.singleChunkSize.y);
         Vector3Int randomPosition = new Vector3Int(x, y, 0);
 
         if (IsObjectAtPosition(randomPosition)) return Vector3.zero;

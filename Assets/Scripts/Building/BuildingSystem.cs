@@ -22,7 +22,6 @@ public class BuildingSystem : MonoBehaviour
     public SingleChunk actualChunk;
     [SerializeField] private List<BuildingID> allBuildings = new List<BuildingID>();
     [SerializeField] private List<BuildingID> allPaths = new List<BuildingID>();
-    private int placedBuildings;
 
     void Awake()
     {
@@ -164,6 +163,12 @@ public class BuildingSystem : MonoBehaviour
             _controller.startPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
             _controller.isStartPositionPlaced = true;
 
+            if (!_objectToPlace.canBePlaced)
+            {
+                DestroyButton();
+                return;
+            }
+
             _objectToPlace.Place();
             ResourcesData.instance.RemoveResources(_buildingID._prices);
 
@@ -179,10 +184,15 @@ public class BuildingSystem : MonoBehaviour
             _controller.endPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
             _controller.isEndPositionPlaced = true;
 
+            if (!_objectToPlace.canBePlaced)
+            {
+                DestroyButton();
+                return;
+            }
             _objectToPlace.Place();
+            ResourcesData.instance.RemoveResources(_buildingID._prices);
 
             _controller.MakePath();
-
             StartCoroutine(StartPlacingObjects(_controller, _buildingID));
         }
 
@@ -191,8 +201,6 @@ public class BuildingSystem : MonoBehaviour
 
     IEnumerator StartPlacingObjects(MultiBuildingController _controller, BuildingID _buildingID)
     {
-        placedBuildings = 0;
-
         for (int i = 0; i < _controller.bestPositions.Count - 1; i++)
         {
             InitializeWithObject(objectToPlaceCopy);
@@ -203,12 +211,11 @@ public class BuildingSystem : MonoBehaviour
             {
                 allPaths.Add(_buildingID);
                 _objectToPlace.Place();
-                placedBuildings++;
+                ResourcesData.instance.RemoveResources(_buildingID._prices);
             }
             else DestroyButton();
         }
 
-        ResourcesData.instance.RemoveResources(_buildingID._prices, placedBuildings);
         DestroyButton();
     }
 

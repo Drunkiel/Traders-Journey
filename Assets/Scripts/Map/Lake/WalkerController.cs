@@ -30,22 +30,29 @@ public class WalkerController : MonoBehaviour
 
     private void MoveWalker()
     {
+        MapGenerator _mapGenerator = MapGenerator.instance;
+
         Vector2 bestMove = GetBestMove(WalkerTarget());
 
         transform.position += new Vector3(bestMove.x, bestMove.y);
 
         PlaceAdditionalTiles(transform.position, moveDirection, 1f);
-        tilemap.SetTile(tilemap.WorldToCell(transform.position), MapGenerator.instance._mapData.waterTiles[MapGenerator.instance.GetRandomTile(MapGenerator.instance._mapData.waterTiles.Length)]);
+        tilemap.SetTile(tilemap.WorldToCell(transform.position), _mapGenerator._mapData.waterTiles[_mapGenerator.GetRandomTile(_mapGenerator._mapData.waterTiles.Length)]);
     }
 
     public void SetPosition()
     {
+        Vector2Int chunkSize = ChunkController.singleChunkSize;
+
         if (Random.Range(0, 2) == 0) isTop = true;
         if (Random.Range(0, 2) == 0) isLeft = true;
 
         Vector3Int startPosition = new Vector3Int(
-                isLeft ? Random.Range(-MapGenerator.mapSize.x, -MapGenerator.mapSize.x / 2) : Random.Range(MapGenerator.mapSize.x / 2, MapGenerator.mapSize.x),
-                isTop ? Random.Range(MapGenerator.mapSize.y / 2, MapGenerator.mapSize.y) : Random.Range(-MapGenerator.mapSize.y, -MapGenerator.mapSize.y / 2)
+                isLeft ? Random.Range(-chunkSize.x, -chunkSize.x / 2) :
+                         Random.Range(chunkSize.x / 2, chunkSize.x),
+
+                isTop ? Random.Range(chunkSize.y / 2, chunkSize.y) :
+                        Random.Range(-chunkSize.y, -chunkSize.y / 2)
             );
 
         //Setting the end
@@ -100,6 +107,8 @@ public class WalkerController : MonoBehaviour
 
     private void PlaceAdditionalTiles(Vector3 position, Vector2Int direction, float width)
     {
+        MapGenerator _mapGenerator = MapGenerator.instance;
+
         Vector3Int cellPosition = tilemap.WorldToCell(position);
 
         float randomWidth = Random.Range(width - 1f, width + 1f);
@@ -108,7 +117,7 @@ public class WalkerController : MonoBehaviour
         for (int i = -Mathf.RoundToInt(randomWidth / 2); i <= Mathf.RoundToInt(randomWidth / 2); i++)
         {
             Vector3Int adjacentCell = cellPosition + new Vector3Int(i, direction.y, 0);
-            tilemap.SetTile(tilemap.WorldToCell(tilemap.GetCellCenterWorld(adjacentCell)), MapGenerator.instance._mapData.waterTiles[MapGenerator.instance.GetRandomTile(MapGenerator.instance._mapData.waterTiles.Length)]);
+            tilemap.SetTile(tilemap.WorldToCell(tilemap.GetCellCenterWorld(adjacentCell)), _mapGenerator._mapData.waterTiles[_mapGenerator.GetRandomTile(_mapGenerator._mapData.waterTiles.Length)]);
         }
     }
 }
