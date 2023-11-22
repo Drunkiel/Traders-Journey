@@ -23,7 +23,10 @@ public class EnvironmentGenerator : MonoBehaviour
 
     private IEnumerator GenerateEnvironment(float interval)
     {
-        GameObject[] prefabs = MapGenerator.instance._mapData.treePrefabs;
+        MapGenerator _mapGenerator = MapGenerator.instance;
+        EnvironmentData _environmentData = _mapGenerator._mapData._environmentData;
+
+        GameObject[] prefabs = _environmentData.treePrefabs;
 
         while (treesGenerated <= maxTrees)
         {
@@ -32,7 +35,7 @@ public class EnvironmentGenerator : MonoBehaviour
                 Vector3 randomPosition = GetPosition();
                 if (randomPosition != Vector3.zero)
                 {
-                    Instantiate(prefabs[MapGenerator.instance.GetRandomTile(prefabs.Length)], randomPosition, Quaternion.identity, parent);
+                    Instantiate(prefabs[_mapGenerator.GetRandomTile(prefabs.Length)], randomPosition, Quaternion.identity, parent);
                     treesGenerated++;
                 }
                 else maxTrees--;
@@ -44,8 +47,10 @@ public class EnvironmentGenerator : MonoBehaviour
 
     private Vector3 GetPosition()
     {
-        int x = Random.Range(-ChunkController.singleChunkSize.x, ChunkController.singleChunkSize.x);
-        int y = Random.Range(-ChunkController.singleChunkSize.y, ChunkController.singleChunkSize.y);
+        Vector2Int chunkSize = ChunkController.singleChunkSize;
+
+        int x = Random.Range(-chunkSize.x, chunkSize.x);
+        int y = Random.Range(-chunkSize.y, chunkSize.y);
         Vector3Int randomPosition = new Vector3Int(x, y, 0);
 
         if (IsObjectAtPosition(randomPosition)) return Vector3.zero;

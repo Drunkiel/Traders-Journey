@@ -11,7 +11,7 @@ public class MapGenerator : MonoBehaviour
     public Tilemap groundTilemap;
     public Tilemap waterTilemap;
 
-    [SerializeField] private GroundGenerator _groundGenerator;
+    public GroundGenerator _groundGenerator;
     [SerializeField] private LakeGenerator _lakeGenerator;
     [SerializeField] private EnvironmentGenerator _environmentGenerator;
 
@@ -22,9 +22,9 @@ public class MapGenerator : MonoBehaviour
 
     private void Start()
     {
-        _groundGenerator.GenerateGround();
+/*        _groundGenerator.GenerateGround();
         _lakeGenerator.GenerateLake();
-        _environmentGenerator.GenerateEnvironment();
+        _environmentGenerator.GenerateEnvironment();*/
     }
 
     public int GetRandomTile(int numberOfTiles)

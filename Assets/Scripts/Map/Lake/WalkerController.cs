@@ -31,13 +31,14 @@ public class WalkerController : MonoBehaviour
     private void MoveWalker()
     {
         MapGenerator _mapGenerator = MapGenerator.instance;
+        EnvironmentData _environmentData = _mapGenerator._mapData._environmentData;
 
         Vector2 bestMove = GetBestMove(WalkerTarget());
 
         transform.position += new Vector3(bestMove.x, bestMove.y);
 
         PlaceAdditionalTiles(transform.position, moveDirection, 1f);
-        tilemap.SetTile(tilemap.WorldToCell(transform.position), _mapGenerator._mapData.waterTiles[_mapGenerator.GetRandomTile(_mapGenerator._mapData.waterTiles.Length)]);
+        tilemap.SetTile(tilemap.WorldToCell(transform.position), _environmentData.waterTiles[_mapGenerator.GetRandomTile(_environmentData.waterTiles.Length)]);
     }
 
     public void SetPosition()
@@ -108,6 +109,7 @@ public class WalkerController : MonoBehaviour
     private void PlaceAdditionalTiles(Vector3 position, Vector2Int direction, float width)
     {
         MapGenerator _mapGenerator = MapGenerator.instance;
+        EnvironmentData _environmentData = _mapGenerator._mapData._environmentData;
 
         Vector3Int cellPosition = tilemap.WorldToCell(position);
 
@@ -117,7 +119,8 @@ public class WalkerController : MonoBehaviour
         for (int i = -Mathf.RoundToInt(randomWidth / 2); i <= Mathf.RoundToInt(randomWidth / 2); i++)
         {
             Vector3Int adjacentCell = cellPosition + new Vector3Int(i, direction.y, 0);
-            tilemap.SetTile(tilemap.WorldToCell(tilemap.GetCellCenterWorld(adjacentCell)), _mapGenerator._mapData.waterTiles[_mapGenerator.GetRandomTile(_mapGenerator._mapData.waterTiles.Length)]);
+            tilemap.SetTile(tilemap.WorldToCell(tilemap.GetCellCenterWorld(adjacentCell)),
+                            _environmentData.waterTiles[_mapGenerator.GetRandomTile(_environmentData.waterTiles.Length)]);
         }
     }
 }

@@ -6,21 +6,25 @@ public class GroundGenerator : MonoBehaviour
 {
     public static bool isGroundGenerated;
 
-    public void GenerateGround()
+    public void GenerateGround(Vector3Int chunkCenter)
     {
-        StartCoroutine(GenerateGrassTiles(0f));
+        StartCoroutine(GenerateGrassTiles(0f, chunkCenter));
     }
 
-    private IEnumerator GenerateGrassTiles(float interval)
+    private IEnumerator GenerateGrassTiles(float interval, Vector3Int chunkCenter)
     {
-        isGroundGenerated = false;
-        Tile[] tiles = MapGenerator.instance._mapData.groundTiles;
+        Vector2Int chunkSize = ChunkController.singleChunkSize;
+        MapGenerator _mapGenerator = MapGenerator.instance;
+        EnvironmentData _environmentData = _mapGenerator._mapData._environmentData;
 
-        for (int i = ChunkController.singleChunkSize.y; i > -ChunkController.singleChunkSize.y; i--)
+        isGroundGenerated = false;
+        Tile[] tiles = _environmentData.groundTiles;
+
+        for (int i = chunkSize.y; i > -chunkSize.y; i--)
         {
-            for (int j = -ChunkController.singleChunkSize.x; j < ChunkController.singleChunkSize.x; j++)
+            for (int j = -chunkSize.x; j < chunkSize.x; j++)
             {
-                MapGenerator.instance.groundTilemap.SetTile(new Vector3Int(j, i - 1), tiles[MapGenerator.instance.GetRandomTile(tiles.Length)]);
+                _mapGenerator.groundTilemap.SetTile(new Vector3Int(chunkCenter.x + j, chunkCenter.y + i - 1), tiles[_mapGenerator.GetRandomTile(tiles.Length)]);
                 yield return new WaitForSeconds(interval);
             }
         }

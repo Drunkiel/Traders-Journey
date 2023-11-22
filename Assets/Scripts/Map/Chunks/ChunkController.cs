@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ChunkController : MonoBehaviour
@@ -26,7 +27,9 @@ public class ChunkController : MonoBehaviour
             {
                 //Create new chunk and rename it
                 GameObject newChunk = Instantiate(chunkPrefab, new Vector3(j * 20, i * 20, 0), Quaternion.identity, parent);
-                newChunk.name = "Chunk " + index;
+                string newName = "Chunk " + index;
+                newChunk.name = newName;
+                newChunk.transform.GetChild(0).GetChild(2).GetComponent<TMP_Text>().text = newName;
 
                 //Set new chunk to variables
                 SingleChunk _singleChunk = newChunk.GetComponent<SingleChunk>();
