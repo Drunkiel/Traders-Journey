@@ -5,7 +5,7 @@ public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator instance;
     public static bool isMapGenerated;
-    public static Vector2Int mapSize = new Vector2Int(11, 11);
+    public static Vector2Int mapSize = new Vector2Int(3, 3);
 
     public MapData _mapData;
     public Tilemap groundTilemap;
@@ -22,9 +22,9 @@ public class MapGenerator : MonoBehaviour
 
     private void Start()
     {
-/*        _groundGenerator.GenerateGround();
+        //_groundGenerator.GenerateGround();
         _lakeGenerator.GenerateLake();
-        _environmentGenerator.GenerateEnvironment();*/
+        //_environmentGenerator.GenerateEnvironment();
     }
 
     public int GetRandomTile(int numberOfTiles)

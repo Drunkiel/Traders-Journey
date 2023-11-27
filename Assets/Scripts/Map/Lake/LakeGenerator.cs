@@ -8,8 +8,10 @@ public class LakeGenerator : MonoBehaviour
 
     public void GenerateLake()
     {
-        SpawnWalker();
-        StartCoroutine(_walkerController.RepeatMoveWalker(GameController.isDevMode ? 0 : 0.25f));
+        for (int i = 0; i < MapGenerator.mapSize.x + MapGenerator.mapSize.y; i++)
+        {
+            SpawnWalker();
+        }
     }
 
     private void SpawnWalker()
@@ -17,6 +19,6 @@ public class LakeGenerator : MonoBehaviour
         GameObject newWalker = Instantiate(walkerPrefab);
         _walkerController = newWalker.GetComponent<WalkerController>();
         _walkerController.tilemap = MapGenerator.instance.waterTilemap;
-        _walkerController.SetPosition();
+        _walkerController.GenerateMap(new Vector2Int(MapGenerator.mapSize.x * 20, MapGenerator.mapSize.y * 20), 1000);
     }
 }

@@ -184,13 +184,9 @@ public class BuildingSystem : MonoBehaviour
             _controller.endPosition = SnapCoordinateToGrid(_objectToPlace.transform.position);
             _controller.isEndPositionPlaced = true;
 
-            if (!_objectToPlace.canBePlaced)
-            {
-                DestroyButton();
-                return;
-            }
-            _objectToPlace.Place();
-            ResourcesData.instance.RemoveResources(_buildingID._prices);
+            GameObject objectToDestroy = _objectToPlace.gameObject;
+            _objectToPlace = null;
+            Destroy(objectToDestroy);
 
             _controller.MakePath();
             StartCoroutine(StartPlacingObjects(_controller, _buildingID));
@@ -201,7 +197,7 @@ public class BuildingSystem : MonoBehaviour
 
     IEnumerator StartPlacingObjects(MultiBuildingController _controller, BuildingID _buildingID)
     {
-        for (int i = 0; i < _controller.bestPositions.Count - 1; i++)
+        for (int i = 0; i < _controller.bestPositions.Count; i++)
         {
             InitializeWithObject(objectToPlaceCopy);
             _objectToPlace.transform.position = _controller.bestPositions[i];

@@ -14,10 +14,7 @@ public class SingleChunk : MonoBehaviour
 
     private void Update()
     {
-        if (BuildingSystem.inBuildingMode && !isOwned)
-        {
-            UpdateChunkVisibility();
-        }
+        if (!isOwned) UpdateChunkVisibility();
     }
 
     public void BuyChunk()
@@ -33,7 +30,7 @@ public class SingleChunk : MonoBehaviour
         Vector2 cameraPosition = Camera.main.transform.position;
         float distance = Vector2.Distance(transform.position, cameraPosition);
 
-        if (distance < 50) chunkUI.SetActive(true);
+        if (distance < 50) chunkUI.SetActive(BuildingSystem.inBuildingMode);
         else chunkUI.SetActive(false);
     }
 }

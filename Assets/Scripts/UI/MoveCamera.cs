@@ -18,7 +18,7 @@ public class MoveCamera : MonoBehaviour
     private void LateUpdate()
     {
         if (GameController.isGamePaused) return;
-        if (BuildingSystem.inBuildingMode) return;
+/*        if (BuildingSystem.inBuildingMode) return;*/
 
         Move();
         Zoom();
