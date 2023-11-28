@@ -6,9 +6,9 @@ public class ChunkController : MonoBehaviour
 {
     public static Vector2Int singleChunkSize = new Vector2Int(10, 10);
 
-    public static List<int> idOfAllNotOwnedChunks = new List<int>();
-    public static List<int> idOfAllOwnedChunks = new List<int>();
-    public static List<SingleChunk> allChunks = new List<SingleChunk>();
+    public static List<int> idOfAllNotOwnedChunks = new();
+    public static List<int> idOfAllOwnedChunks = new();
+    public static List<SingleChunk> allChunks = new();
 
     [SerializeField] private Transform parent;
     [SerializeField] private GameObject chunkPrefab;
