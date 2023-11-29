@@ -12,6 +12,7 @@ public class LakeGenerator : MonoBehaviour
         {
             SpawnWalker();
         }
+        isLakeGenerated = true;
     }
 
     private void SpawnWalker()

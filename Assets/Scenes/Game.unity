@@ -15602,7 +15602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156dd4d1961a327478f99b7eeaecbfa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTrees: 150
+  treesGenerated: 0
+  maxTrees: 0
   parent: {fileID: 528326936}
 --- !u!114 &1947814918
 MonoBehaviour:
@@ -17021,8 +17022,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 75}
+  m_AnchoredPosition: {x: 0, y: 5}
+  m_SizeDelta: {x: 1930, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2122486238
 MonoBehaviour:
@@ -17053,7 +17054,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 4
+  m_PixelsPerUnitMultiplier: 5
 --- !u!222 &2122486239
 CanvasRenderer:
   m_ObjectHideFlags: 0
