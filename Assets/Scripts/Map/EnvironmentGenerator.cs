@@ -48,7 +48,7 @@ public class EnvironmentGenerator : MonoBehaviour
 
         int x = Random.Range(-mapSize.x, mapSize.x);
         int y = Random.Range(-mapSize.y, mapSize.y);
-        Vector3Int randomPosition = new Vector3Int(x, y, 0);
+        Vector3Int randomPosition = new(x, y, 0);
 
         if (IsObjectAtPosition(randomPosition)) return GetPosition();
 

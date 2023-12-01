@@ -4,6 +4,7 @@ public class ShowHide : MonoBehaviour
 {
     public bool isShown;
     [SerializeField] private Animator anim;
+    [SerializeField] private GameObject objectToShowHide;
 
     [SerializeField] private string showAnimationName;
     [SerializeField] private string hideAnimationName;
@@ -15,5 +16,11 @@ public class ShowHide : MonoBehaviour
 
         if (isShown) anim.Play(hideAnimationName);
         else anim.Play(showAnimationName);
+    }
+
+    public void ShowHideObject()
+    {
+        isShown = !isShown;
+        objectToShowHide.SetActive(isShown);
     }
 }

@@ -32,6 +32,10 @@ public class ResourcesData : MonoBehaviour
     public SingleBox suppliesBox;
     public SingleBox wheatBox;
     public SingleBox meatBox;
+
+    [Header("Materials")]
+    [SerializeField] private ShowHide _materialsShowHide;
+    public SingleBox materialsBox;
     public SingleBox stoneBox;
     public SingleBox goldBox;
     public SingleBox silverBox;
@@ -59,51 +63,66 @@ public class ResourcesData : MonoBehaviour
         switch (resources)
         {
             case Resources.Population:
-                populationBox._showHide.ShowHideAnimation();
-                populationBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
+                QuickUpdateResources(populationBox, quantity);
                 PlayerResources.populationQuantity += quantity;
                 break;
             case Resources.Coins:
-                coinsBox._showHide.ShowHideAnimation();
-                coinsBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
+                QuickUpdateResources(coinsBox, quantity);
                 PlayerResources.coinsQuantity += quantity;
                 break;
             case Resources.Supplies:
-                suppliesBox._showHide.ShowHideAnimation();
-                suppliesBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
+                QuickUpdateResources(suppliesBox, quantity);
                 PlayerResources.suppliesQuantity += quantity;
                 break;
             case Resources.Wheat:
-                wheatBox._showHide.ShowHideAnimation();
-                wheatBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
+                QuickUpdateResources(wheatBox, quantity);
                 PlayerResources.wheatQuantity += quantity;
                 break;
             case Resources.Meat:
-                meatBox._showHide.ShowHideAnimation();
-                meatBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
+                QuickUpdateResources(meatBox, quantity);
                 PlayerResources.meatQuantity += quantity;
                 break;
+
+            //Mineable Materials
             case Resources.Stone:
-                stoneBox._showHide.ShowHideAnimation();
-                stoneBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
+                if (!_materialsShowHide.isShown)
+                {
+                    materialsBox = SetValues(stoneBox);
+                    QuickUpdateResources(stoneBox, quantity, true);
+                }
+                else QuickUpdateResources(stoneBox, quantity);
+
                 PlayerResources.stoneQuantity += quantity;
                 break;
             case Resources.Gold:
-                goldBox._showHide.ShowHideAnimation();
-                goldBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
+                if (!_materialsShowHide.isShown)
+                {
+                    materialsBox = SetValues(goldBox);
+                    QuickUpdateResources(goldBox, quantity, true);
+                }
+                else QuickUpdateResources(goldBox, quantity);
                 PlayerResources.goldQuantity += quantity;
                 break;
             case Resources.Silver:
-                silverBox._showHide.ShowHideAnimation();
-                silverBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
+                if (!_materialsShowHide.isShown)
+                {
+                    materialsBox = SetValues(silverBox);
+                    QuickUpdateResources(silverBox, quantity, true);
+                }
+                else QuickUpdateResources(silverBox, quantity);
                 PlayerResources.silverQuantity += quantity;
                 break;
             case Resources.Diamond:
-                diamondBox._showHide.ShowHideAnimation();
-                diamondBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "+" + quantity;
+                if (!_materialsShowHide.isShown)
+                {
+                    materialsBox = SetValues(diamondBox);
+                    QuickUpdateResources(diamondBox, quantity, true);
+                }
+                else QuickUpdateResources(diamondBox, quantity);
                 PlayerResources.diamondQuantity += quantity;
                 break;
         }
+
         UpdateResourcesPanel();
     }
 
@@ -114,54 +133,94 @@ public class ResourcesData : MonoBehaviour
             switch (prices[i].resources)
             {
                 case Resources.Population:
-                    populationBox._showHide.ShowHideAnimation();
-                    populationBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity * quantity;
+                    QuickUpdateResources(populationBox, -prices[i].quantity);
                     PlayerResources.populationQuantity -= prices[i].quantity * quantity;
                     break;
                 case Resources.Coins:
-                    coinsBox._showHide.ShowHideAnimation();
-                    coinsBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity * quantity;
+                    QuickUpdateResources(coinsBox, -prices[i].quantity);
                     PlayerResources.coinsQuantity -= prices[i].quantity * quantity;
                     break;
                 case Resources.Supplies:
-                    suppliesBox._showHide.ShowHideAnimation();
-                    suppliesBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity * quantity;
+                    QuickUpdateResources(suppliesBox, -prices[i].quantity);
                     PlayerResources.suppliesQuantity -= prices[i].quantity * quantity;
                     break;
                 case Resources.Wheat:
-                    wheatBox._showHide.ShowHideAnimation();
-                    wheatBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity * quantity;
+                    QuickUpdateResources(wheatBox, -prices[i].quantity);
                     PlayerResources.wheatQuantity -= prices[i].quantity * quantity;
                     break;
                 case Resources.Meat:
-                    meatBox._showHide.ShowHideAnimation();
-                    meatBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity * quantity;
+                    QuickUpdateResources(meatBox, -prices[i].quantity);
                     PlayerResources.meatQuantity -= prices[i].quantity * quantity;
                     break;
+
+                //Mineable materials
                 case Resources.Stone:
-                    stoneBox._showHide.ShowHideAnimation();
-                    stoneBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity * quantity;
+                    if (!_materialsShowHide.isShown)
+                    {
+                        materialsBox = SetValues(stoneBox);
+                        QuickUpdateResources(stoneBox, -prices[i].quantity, true);
+                    }
+                    else QuickUpdateResources(stoneBox, -prices[i].quantity);
                     PlayerResources.stoneQuantity -= prices[i].quantity * quantity;
                     break;
                 case Resources.Gold:
-                    goldBox._showHide.ShowHideAnimation();
-                    goldBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity * quantity;
+                    if (!_materialsShowHide.isShown)
+                    {
+                        materialsBox = SetValues(goldBox);
+                        QuickUpdateResources(goldBox, -prices[i].quantity, true);
+                    }
+                    else QuickUpdateResources(goldBox, -prices[i].quantity);
                     PlayerResources.goldQuantity -= prices[i].quantity * quantity;
                     break;
                 case Resources.Silver:
-                    silverBox._showHide.ShowHideAnimation();
-                    silverBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity * quantity;
+                    if (!_materialsShowHide.isShown)
+                    {
+                        materialsBox = SetValues(silverBox);
+                        QuickUpdateResources(silverBox, -prices[i].quantity, true);
+                    }
+                    else QuickUpdateResources(silverBox, -prices[i].quantity);
                     PlayerResources.silverQuantity -= prices[i].quantity * quantity;
                     break;
                 case Resources.Diamond:
-                    diamondBox._showHide.ShowHideAnimation();
-                    diamondBox._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = "-" + prices[i].quantity * quantity;
+                    if (!_materialsShowHide.isShown)
+                    {
+                        materialsBox = SetValues(diamondBox);
+                        QuickUpdateResources(diamondBox, -prices[i].quantity, true);
+                    }
+                    else QuickUpdateResources(diamondBox, -prices[i].quantity);
                     PlayerResources.diamondQuantity -= prices[i].quantity * quantity;
                     break;
             }
         }
 
         UpdateResourcesPanel();
+    }
+
+    private void QuickUpdateResources(SingleBox resourceBox, int quantity, bool useMaterialBox = false)
+    {
+        bool test = quantity >= 0;
+        string sign = test ? "+" : "-";
+
+        SingleBox _box;
+        if (useMaterialBox) _box = materialsBox;
+        else _box = resourceBox;
+
+        _box._showHide.ShowHideAnimation();
+        Color defaultColor = test ? BuildingSystem.instance.colors[0] : BuildingSystem.instance.colors[1];
+        Vector4 newColor = new(defaultColor.r, defaultColor.g, defaultColor.b, defaultColor.a + 0.5f);
+        _box._showHide.transform.GetChild(1).GetComponent<TMP_Text>().color = newColor;
+        _box._showHide.transform.GetChild(1).GetComponent<TMP_Text>().text = sign + Mathf.Abs(quantity);
+    }
+
+    private SingleBox SetValues(SingleBox resourceBox)
+    {
+        return new SingleBox()
+        {
+            resourcesType = resourceBox.resourcesType,
+            sprite = resourceBox.sprite,
+            quantityText = resourceBox.quantityText,
+            _showHide = materialsBox._showHide
+        };
     }
 
     public void UpdateResourcesPanel()
