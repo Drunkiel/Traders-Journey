@@ -20,8 +20,8 @@ public class BuildingSystem : MonoBehaviour
     public PathTester _pathTester;
     [HideInInspector] public GameObject objectToPlaceCopy;
     public SingleChunk actualChunk;
-    [SerializeField] private List<BuildingID> allBuildings = new List<BuildingID>();
-    [SerializeField] private List<BuildingID> allPaths = new List<BuildingID>();
+    public List<BuildingID> _allBuildings = new();
+    public List<BuildingID> _allPaths = new();
 
     void Awake()
     {
@@ -143,7 +143,7 @@ public class BuildingSystem : MonoBehaviour
             {
                 BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
                 ResourcesData.instance.RemoveResources(_buildingID._prices);
-                allBuildings.Add(_buildingID);
+                _allBuildings.Add(_buildingID);
                 _objectToPlace.Place();
             }
             else DestroyButton();
@@ -205,7 +205,7 @@ public class BuildingSystem : MonoBehaviour
 
             if (_objectToPlace.canBePlaced)
             {
-                allPaths.Add(_buildingID);
+                _allPaths.Add(_buildingID);
                 _objectToPlace.Place();
                 ResourcesData.instance.RemoveResources(_buildingID._prices);
             }
@@ -233,7 +233,7 @@ public class BuildingSystem : MonoBehaviour
 
     private bool CheckIfExists(string buildingName)
     {
-        foreach (var _buildingID in allBuildings)
+        foreach (var _buildingID in _allBuildings)
         {
             if (_buildingID.buildingName.Equals(buildingName)) return true;
         }
