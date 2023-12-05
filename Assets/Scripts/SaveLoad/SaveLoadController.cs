@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class SaveLoadController : MonoBehaviour
 
     void Awake()
     {
-        jsonSavePath = Application.persistentDataPath + "/Data.json";
+        jsonSavePath = Application.persistentDataPath + "/save.json";
 
         try
         {
@@ -64,20 +65,40 @@ public class SaveLoadController : MonoBehaviour
                 }
         */
 
-        if (CycleController.instance.week >= 2)
+        if (CycleController.instance.week >= 1)
         {
+            BuildingSystem _buildingSystem = BuildingSystem.instance;
+
+            //For some reason I can not use only one pair of lists because saving to json overrides both savings as one
+            List <Vector3> positions = new();
+            List<string> _buildings = new();
+            //So this is a reason why this list below exist
+            List<Vector3> positions1 = new();
+            List<string> _buildings1 = new();
+
             //Saving buildings
-            foreach (BuildingID _buildingID in BuildingSystem.instance._allBuildings)
+            if(_buildingSystem._allBuildings.Count > 0)
             {
-                _data._buildingSaveData.positions.Add(_buildingID.transform.position);
-                _data._buildingSaveData._buildings.Add(_buildingID);
+                foreach (BuildingID _buildingID in _buildingSystem._allBuildings)
+                {
+                    positions.Add(_buildingID.transform.position);
+                    _buildings.Add(_buildingID.buildingName);
+                }
+                _data._buildingSaveData.positions = positions;
+                _data._buildingSaveData._buildingNames = _buildings;
             }
 
             //Saving paths
-            foreach (BuildingID _buildingID in BuildingSystem.instance._allPaths)
+            if (_buildingSystem._allPaths.Count > 0)
             {
-                _data._pathSaveData.positions.Add(_buildingID.transform.position);
-                _data._pathSaveData._buildings.Add(_buildingID);
+                _buildings1.Add(_buildingSystem._allPaths[0].buildingName); //Need only one path to define rest
+                foreach (BuildingID _buildingID in _buildingSystem._allPaths)
+                {
+                    positions1.Add(_buildingID.transform.position);
+                }
+
+                _data._pathSaveData.positions = positions1;
+                _data._pathSaveData._buildingNames = _buildings1;
             }
         }
 
@@ -108,17 +129,17 @@ public class SaveLoadController : MonoBehaviour
         string json = ReadFromFile();
         JsonUtility.FromJsonOverwrite(json, _data);
 
-/*        foreach (var data in _data._buildingsData)
-        {
-            _buildingSystem.InitializeWithObject(_buildingSystem.buildingsPrefabs[data.id]);
-            _buildingSystem._objectToPlace.transform.position = data.position;
-            if (data.isInProduction)
-            {
-                _buildingSystem._objectToPlace.GetComponent<ProductionID>().isInProduction = data.isInProduction;
-                _buildingSystem._objectToPlace.GetComponent<ProductionID>().endTime = new System.DateTime(data.endTime.years, data.endTime.months, data.endTime.days, data.endTime.hours, data.endTime.minutes, data.endTime.seconds);
-            }
-            _buildingSystem.PlaceButton();
-        }*/
+        /*        foreach (var data in _data._buildingsData)
+                {
+                    _buildingSystem.InitializeWithObject(_buildingSystem.buildingsPrefabs[data.id]);
+                    _buildingSystem._objectToPlace.transform.position = data.position;
+                    if (data.isInProduction)
+                    {
+                        _buildingSystem._objectToPlace.GetComponent<ProductionID>().isInProduction = data.isInProduction;
+                        _buildingSystem._objectToPlace.GetComponent<ProductionID>().endTime = new System.DateTime(data.endTime.years, data.endTime.months, data.endTime.days, data.endTime.hours, data.endTime.minutes, data.endTime.seconds);
+                    }
+                    _buildingSystem.PlaceButton();
+                }*/
     }
 
     private string ReadFromFile()

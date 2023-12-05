@@ -18,6 +18,11 @@ public class CycleController : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        if (GameController.isDevMode) EndDay();
+    }
+
     public void OpenSummaryUI()
     {
         summaryUI.SetActive(true);

@@ -5,6 +5,6 @@ using UnityEngine;
 [Serializable]
 public class BuildingSaveData
 {
-    public List<Vector3> positions = new List<Vector3>();
-    public List<BuildingID> _buildings = new List<BuildingID>();
+    public List<Vector3> positions = new();
+    public List<string> _buildingNames = new();
 }

@@ -156,7 +156,7 @@ public class BuildingSystem : MonoBehaviour
     private void MultiPlaceButton()
     {
         MultiBuildingController _controller = GetComponent<MultiBuildingController>();
-        BuildingID _buildingID = objectToPlaceCopy.GetComponent<BuildingID>();
+        BuildingID _buildingID = objectToPlaceCopy.GetComponent<BuildingID>(); //This component is using a prefab to get data
 
         if (!_controller.isStartPositionPlaced)
         {
@@ -205,7 +205,7 @@ public class BuildingSystem : MonoBehaviour
 
             if (_objectToPlace.canBePlaced)
             {
-                _allPaths.Add(_buildingID);
+                _allPaths.Add(_objectToPlace.GetComponent<BuildingID>()); //This component is taken from the actual game object
                 _objectToPlace.Place();
                 ResourcesData.instance.RemoveResources(_buildingID._prices);
             }
