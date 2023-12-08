@@ -44,7 +44,7 @@ public class EnvironmentGenerator : MonoBehaviour
 
     private Vector3 GetPosition()
     {
-        Vector2Int mapSize = new Vector2Int(MapGenerator.mapSize.x * 17, MapGenerator.mapSize.y * 17);
+        Vector2Int mapSize = new(MapGenerator.mapSize.x * 17, MapGenerator.mapSize.y * 17);
 
         int x = Random.Range(-mapSize.x, mapSize.x);
         int y = Random.Range(-mapSize.y, mapSize.y);
