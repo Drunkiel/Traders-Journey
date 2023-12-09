@@ -5,12 +5,17 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float maxSpeed;
     [SerializeField] private Rigidbody2D rgBody;
+    [SerializeField] private Animator anim;
     private Vector2 movement;
 
     private void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        anim.SetFloat("Horizontal", movement.x);
+        anim.SetFloat("Vertical", movement.y);
+        anim.SetFloat("Speed", movement.sqrMagnitude);
     }
 
     private void FixedUpdate()

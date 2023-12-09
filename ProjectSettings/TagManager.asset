@@ -46,11 +46,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Building
-    uniqueID: 670722673
+  - name: Background
+    uniqueID: 4247669521
     locked: 0
-  - name: NPC
-    uniqueID: 4185237925
+  - name: Foreground
+    uniqueID: 994272781
     locked: 0
   - name: UI
     uniqueID: 210251903
