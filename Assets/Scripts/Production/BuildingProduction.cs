@@ -24,7 +24,7 @@ public class BuildingProduction
     {
         for (int i = 0; i < _productions.Length; i++)
         {
-            ResourcesData.instance.AddResources(_productions[i].resources, _productions[i].quantity);
+            //ResourcesData.instance.AddResources(_productions[i].resources, _productions[i].quantity);
         }
         producingDays = 0;
     }

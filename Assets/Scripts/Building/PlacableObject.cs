@@ -75,11 +75,11 @@ public class PlacableObject : MonoBehaviour
 
         //Other checks
         //Check if resources
-        if (!ResourcesData.instance.CheckIfAllResources(_buildingID._prices))
+/*        if (!ResourcesData.instance.CheckIfAllResources(_buildingID._prices))
         {
             print("Brak materia³ów");
             return false;
-        }
+        }*/
 
         //Check if building is in owned chunk
         ChunkController.FindChunk(transform.position);

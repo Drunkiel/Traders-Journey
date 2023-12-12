@@ -10,9 +10,9 @@ public class GameController : MonoBehaviour
     {
         if (CycleController.instance.day != 1) return;
 
-        for (int i = 0; i < firstResources.Length; i++)
+/*        for (int i = 0; i < firstResources.Length; i++)
         {
             ResourcesData.instance.AddResources(firstResources[i].resources, firstResources[i].quantity);
-        }
+        }*/
     }
 }

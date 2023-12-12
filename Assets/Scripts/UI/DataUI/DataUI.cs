@@ -39,7 +39,7 @@ public class DataUI : MonoBehaviour
             for (int i = 0; i < _data.prices.Length; i++)
             {
                 GameObject newCell = Instantiate(cellPrefab, costSectionTransform);
-                newCell.transform.GetChild(1).GetComponent<Image>().sprite = ResourcesData.instance.GetSprite(_data.prices[i].resources);
+                //newCell.transform.GetChild(1).GetComponent<Image>().sprite = ResourcesData.instance.GetSprite(_data.prices[i].resources);
                 newCell.transform.GetChild(2).GetComponent<TMP_Text>().text = _data.prices[i].quantity.ToString();
             }
         }
@@ -50,7 +50,7 @@ public class DataUI : MonoBehaviour
             for (int i = 0; i < _data.productions.Length; i++)
             {
                 GameObject newCell = Instantiate(cellPrefab, productionSectionTransform);
-                newCell.transform.GetChild(1).GetComponent<Image>().sprite = ResourcesData.instance.GetSprite(_data.productions[i].resources);
+               //newCell.transform.GetChild(1).GetComponent<Image>().sprite = ResourcesData.instance.GetSprite(_data.productions[i].resources);
                 string stringCorrection(int i)
                 {
                     if (i == 1) return " day";

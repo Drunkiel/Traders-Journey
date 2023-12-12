@@ -142,7 +142,7 @@ public class BuildingSystem : MonoBehaviour
             if (BuildingValidation())
             {
                 BuildingID _buildingID = _objectToPlace.GetComponent<BuildingID>();
-                ResourcesData.instance.RemoveResources(_buildingID._prices);
+                //ResourcesData.instance.RemoveResources(_buildingID._prices);
                 _allBuildings.Add(_buildingID);
                 _objectToPlace.Place();
             }
@@ -170,7 +170,7 @@ public class BuildingSystem : MonoBehaviour
             }
 
             _objectToPlace.Place();
-            ResourcesData.instance.RemoveResources(_buildingID._prices);
+            //ResourcesData.instance.RemoveResources(_buildingID._prices);
 
             //Create replic of placed object
             InitializeWithObject(objectToPlaceCopy);
@@ -207,7 +207,7 @@ public class BuildingSystem : MonoBehaviour
             {
                 _allPaths.Add(_objectToPlace.GetComponent<BuildingID>()); //This component is taken from the actual game object
                 _objectToPlace.Place();
-                ResourcesData.instance.RemoveResources(_buildingID._prices);
+                //ResourcesData.instance.RemoveResources(_buildingID._prices);
             }
             else DestroyButton();
         }
