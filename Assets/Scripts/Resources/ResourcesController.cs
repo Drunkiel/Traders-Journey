@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum Resources
@@ -13,34 +14,40 @@ public enum Resources
 
 public class ResourcesController : MonoBehaviour
 {
-    public ResourcesData _data;
-
-    [SerializeField] private Transform content;
-
-    private void Start()
-    {
-        AddResources(Resources.Diamond, 1);
-    }
+    [SerializeField] private ResourcesData _data;
+    [SerializeField] private ResourcesUI _resourcesUI;
 
     public void AddResources(Resources resources, int quantity)
     {
-        print((int)resources);
         switch (resources)
         {
             case Resources.Coins:
+                PlayerResources.coinsQuantity += quantity;
                 break;
             case Resources.Wheat:
+                PlayerResources.wheatQuantity += quantity;
                 break;
             case Resources.Meat:
+                PlayerResources.meatQuantity += quantity;
                 break;
             case Resources.Stone:
+                PlayerResources.stoneQuantity += quantity;
                 break;
             case Resources.Gold:
+                PlayerResources.goldQuantity += quantity;
                 break;
             case Resources.Silver:
+                PlayerResources.silverQuantity += quantity;
                 break;
             case Resources.Diamond:
+                PlayerResources.diamondQuantity += quantity;
                 break;
         }
+    }
+
+    public void ControllerBTN(int i)
+    {
+        List<List<ResourceCard>> resourceCards = new() { _data.collectibleResources, _data.mineableResources };
+        _resourcesUI.FillContent(resourceCards[i]);
     }
 }

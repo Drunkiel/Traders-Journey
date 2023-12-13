@@ -28,14 +28,14 @@ public class InteractionSystem : MonoBehaviour
 
             if (hit.collider.TryGetComponent(out BuildingID _buildingID))
             {
-                BuildingSystem.inBuildingMode = true;
+                BuildingManager.instance.ActivateBuildingMode();
                 buildingUI.SetActive(true);
                 _buildingUI.UpdateData(_buildingID);
             }
 
             if (hit.collider.TryGetComponent(out EnvironmentID _environmentID))
             {
-                BuildingSystem.inBuildingMode = true;
+                BuildingManager.instance.ActivateBuildingMode();
                 _environmentUI.gameObject.SetActive(true);
                 _environmentUI.transform.position = hit.collider.transform.position;
                 _environmentUI._environmentID = _environmentID;
