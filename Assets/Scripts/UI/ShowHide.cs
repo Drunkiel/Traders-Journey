@@ -18,7 +18,7 @@ public class ShowHide : MonoBehaviour
         else anim.Play(showAnimationName);
     }
 
-    public void ShowHideObject(bool setPause)
+    public void ShowHideObject(bool setPause = false)
     {
         isShown = !isShown;
         objectToShowHide.SetActive(isShown);

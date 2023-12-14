@@ -7945,6 +7945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
+    coinsText: {fileID: 1283626243}
     collectibleResources:
     - sprite: {fileID: 129212201, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
       name: Wheat
@@ -7953,6 +7954,10 @@ MonoBehaviour:
     - sprite: {fileID: 730658285, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
       name: Stone
       quantity: 0
+    _showHides:
+    - {fileID: 573384399}
+    - {fileID: 2062971255}
+    - {fileID: 1357466950}
   _resourcesUI: {fileID: 1002848137}
 --- !u!1 &1122394138
 GameObject:
@@ -9498,6 +9503,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5108999087078120059, guid: f490ab0fb23cb3f45a8fdf43e0fb2251, type: 3}
   m_PrefabInstance: {fileID: 7382909828194759706}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1357466950 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 711511147332095260, guid: f490ab0fb23cb3f45a8fdf43e0fb2251, type: 3}
+  m_PrefabInstance: {fileID: 7382909828194759706}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ac66247ef0b9f46b440cdf49a08652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1366626746
 GameObject:
   m_ObjectHideFlags: 0
@@ -10533,7 +10549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1535632623
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14719,6 +14735,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050365996}
   m_CullTransparentMesh: 1
+--- !u!114 &2062971255 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 711511147332095260, guid: f490ab0fb23cb3f45a8fdf43e0fb2251, type: 3}
+  m_PrefabInstance: {fileID: 1849019050}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ac66247ef0b9f46b440cdf49a08652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2071588923
 GameObject:
   m_ObjectHideFlags: 0

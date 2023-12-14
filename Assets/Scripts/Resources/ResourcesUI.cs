@@ -14,9 +14,7 @@ public class ResourcesUI : MonoBehaviour
         {
             GameObject newCard = Instantiate(cardPrefab, content.transform);
             ResourcesCard _resourceCard = newCard.GetComponent<ResourcesCard>();
-            _resourceCard.image.sprite = cards[i].sprite;
-            _resourceCard.nameText.text = cards[i].name;
-            _resourceCard.quantityText.text = cards[i].quantity.ToString();
+            _resourceCard.UpdateData(cards[i]);
         }
     }
 
