@@ -11,7 +11,7 @@ public class ResourcesCard : MonoBehaviour
     public void UpdateData(ResourceCard _resourceCard)
     {
         image.sprite = _resourceCard.sprite;
-        nameText.text = _resourceCard.name;
+        nameText.text = _resourceCard.resource.ToString();
         quantityText.text = _resourceCard.quantity.ToString();
     }
 }

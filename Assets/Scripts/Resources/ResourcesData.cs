@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class ResourceCard
 {
+    public Resources resource;
     public Sprite sprite;
-    public string name;
     public int quantity;
 }
 

@@ -7947,12 +7947,24 @@ MonoBehaviour:
   _data:
     coinsText: {fileID: 1283626243}
     collectibleResources:
-    - sprite: {fileID: 129212201, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
-      name: Wheat
+    - resource: 1
+      sprite: {fileID: 129212201, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
+      quantity: 0
+    - resource: 2
+      sprite: {fileID: 129212201, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
       quantity: 0
     mineableResources:
-    - sprite: {fileID: 730658285, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
-      name: Stone
+    - resource: 3
+      sprite: {fileID: 730658285, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
+      quantity: 0
+    - resource: 4
+      sprite: {fileID: 730658285, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
+      quantity: 0
+    - resource: 5
+      sprite: {fileID: 730658285, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
+      quantity: 0
+    - resource: 6
+      sprite: {fileID: 730658285, guid: 3abf733f87a5ac3499fc78939450037f, type: 3}
       quantity: 0
     _showHides:
     - {fileID: 573384399}

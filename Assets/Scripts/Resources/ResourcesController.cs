@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum Resources
 {
@@ -17,49 +19,52 @@ public class ResourcesController : MonoBehaviour
 {
     [SerializeField] private ResourcesData _data;
     [SerializeField] private ResourcesUI _resourcesUI;
-    [SerializeField] private TMP_Text coinsText;
     private List<List<ResourceCard>> _resourceCards;
 
     private void Start()
     {
         _resourceCards = new() { _data.collectibleResources, _data.mineableResources };
-        AddResources(Resources.Wheat, 59);
     }
 
-    //!ADD TO REST VOID SETANIMATION
     public void AddResources(Resources resources, int quantity)
     {
         switch (resources)
         {
             case Resources.Coins:
                 PlayerResources.coinsQuantity += quantity;
-                SetAnimation((int)Resources.Coins, quantity);
+                RepetitiveActivities(resources, PlayerResources.coinsQuantity, quantity);
                 break;
             case Resources.Wheat:
                 PlayerResources.wheatQuantity += quantity;
-                SetAnimation((int)Resources.Wheat, quantity);
+                RepetitiveActivities(resources, PlayerResources.wheatQuantity, quantity);
                 break;
             case Resources.Meat:
                 PlayerResources.meatQuantity += quantity;
-                SetAnimation((int)Resources.Meat, quantity);
+                RepetitiveActivities(resources, PlayerResources.meatQuantity, quantity);
                 break;
             case Resources.Stone:
                 PlayerResources.stoneQuantity += quantity;
-                SetAnimation((int)Resources.Stone, quantity);
+                RepetitiveActivities(resources, PlayerResources.stoneQuantity, quantity);
                 break;
             case Resources.Gold:
                 PlayerResources.goldQuantity += quantity;
-                SetAnimation((int)Resources.Gold, quantity);
+                RepetitiveActivities(resources, PlayerResources.goldQuantity, quantity);
                 break;
             case Resources.Silver:
                 PlayerResources.silverQuantity += quantity;
-                SetAnimation((int)Resources.Silver, quantity);
+                RepetitiveActivities(resources, PlayerResources.silverQuantity, quantity);
                 break;
             case Resources.Diamond:
                 PlayerResources.diamondQuantity += quantity;
-                SetAnimation((int)Resources.Diamond, quantity);
+                RepetitiveActivities(resources, PlayerResources.diamondQuantity , quantity);
                 break;
         }
+    }
+
+    private void RepetitiveActivities(Resources resources, int resourceQuantity, int quantity)
+    {
+        UpdateCard((int)resources, resources, resourceQuantity);
+        SetAnimation((int)resources, resources, quantity);
     }
 
     public void RemoveResources(Resources resources, int quantity)
@@ -106,21 +111,33 @@ public class ResourcesController : MonoBehaviour
         return availableResources - quantity >= 0;
     }
 
-    private void UpdateCard(int a)
+    private void UpdateCard(int i, Resources resources, int quantity)
     {
-        switch (a)
+        int a = CalculateA(i);
+
+        if (a == 0) _data.coinsText.text = quantity.ToString();
+        else
         {
-            case 0:
-                
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
+            List<ResourceCard> cards = _resourceCards[a - 1];
+            cards[FindResource(a - 1, resources)].quantity = PlayerResources.GetQuantity(resources);
         }
     }
 
-    private void SetAnimation(int i, int quantity)
+    //a -> is which ResourceCard is where to look for a resource || resources -> is what script is looking for
+    private int FindResource(int i, Resources resources)
+    {
+        int a = CalculateA(i);
+        List<ResourceCard> cards = _resourceCards[a];
+
+        for (int j = 0; j < cards.Count; j++)
+        {
+            if (cards[j].resource == resources) return j;
+        }
+
+        return 0;
+    }
+
+    private void SetAnimation(int i, Resources resources, int quantity)
     {
         string action = "+";
         Color newColor = BuildingSystem.instance.colors[0];
@@ -130,14 +147,25 @@ public class ResourcesController : MonoBehaviour
             newColor = BuildingSystem.instance.colors[1];
         }
 
-        int a = 0;
-        if (i > 0 && i <= _data.collectibleResources.Count) a = 1;
-        if (i > _data.collectibleResources.Count && i >= _data.collectibleResources.Count + _data.mineableResources.Count) a = 2;
+        int a = CalculateA(i);
 
         //Setting data
+        if (a > 0) 
+        {
+            List<ResourceCard> cards = _resourceCards[a - 1];
+            _data._showHides[a].transform.GetChild(1).GetComponent<Image>().sprite = cards[FindResource(a - 1, resources)].sprite; 
+        }
         _data._showHides[a].GetComponentInChildren<TMP_Text>().color = new(newColor.r, newColor.g, newColor.b, 255);
         _data._showHides[a].GetComponentInChildren<TMP_Text>().text = action + Mathf.Abs(quantity);
         _data._showHides[a].ShowHideAnimation();
+    }
+
+    private int CalculateA(int i)
+    {
+        if (i > 0 && i <= _data.collectibleResources.Count) return 1;
+        if (i > _data.collectibleResources.Count && i >= _data.collectibleResources.Count + _data.mineableResources.Count) return 2;
+
+        return 0;
     }
 
     public void ControllerBTN(int i)
