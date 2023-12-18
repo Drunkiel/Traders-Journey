@@ -22,8 +22,8 @@ public class MapGenerator : MonoBehaviour
 
     private void Start()
     {
-        _lakeGenerator.GenerateLake();
-        _environmentGenerator.GenerateEnvironment();
+/*        _lakeGenerator.GenerateLake();
+        _environmentGenerator.GenerateEnvironment();*/
     }
 
     public int GetRandomTile(int numberOfTiles)

@@ -9,7 +9,7 @@ public class SingleChunk : MonoBehaviour
     private void Start()
     {
         chunkUI = transform.GetChild(0).gameObject;
-        MapGenerator.instance._groundGenerator.GenerateGround(new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y)));
+/*        MapGenerator.instance._groundGenerator.GenerateGround(new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y)));*/
     }
 
     private void Update()
